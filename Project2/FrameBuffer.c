@@ -12,8 +12,7 @@
 #include <sys/ioctl.h>
 #include "toInclude/FrameBuffer.h"
 
-
-struct FramBuffer *initFbInfo(void)
+FrameBuffer *initFbInfo(void)
 {
     int fbfd = 0;
     struct fb_var_screeninfo vinfo;
@@ -23,43 +22,58 @@ struct FramBuffer *initFbInfo(void)
 
     // Open the file for reading and writing
     fbfd = open("/dev/fb0", O_RDWR);
-    if (fbfd == -1) {
+    if (fbfd == -1)
+    {
         perror("Error: cannot open framebuffer device");
         exit(1);
     }
     printf("The framebuffer device was opened successfully.\n");
 
     // Get fixed screen information
-    if (ioctl(fbfd, FBIOGET_FSCREENINFO, &finfo) == -1) {
+    if (ioctl(fbfd, FBIOGET_FSCREENINFO, &finfo) == -1)
+    {
         perror("Error reading fixed information");
         exit(2);
     }
 
     // Get variable screen information
-    if (ioctl(fbfd, FBIOGET_VSCREENINFO, &vinfo) == -1) {
+    if (ioctl(fbfd, FBIOGET_VSCREENINFO, &vinfo) == -1)
+    {
         perror("Error reading variable information");
         exit(3);
     }
 
     // Figure out the size of the screen in bytes
     screensize = vinfo.xres_virtual * vinfo.yres_virtual * vinfo.bits_per_pixel / 8;
-    printf("Hello: %d",vinfo.bits_per_pixel);
+    printf("Hello: %d", vinfo.bits_per_pixel);
 
     // Map the device to memory
     fbp = (char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
-    
-    if ((int)fbp == -1) {
+
+    if ((int)fbp == -1)
+    {
         perror("Error: failed to map framebuffer device to memory");
         exit(4);
     }
-    
-    printf("The framebuffer device was mapped to memory successfully.\n");
-    printf("%dx%d, %dbpp\n", vinfo.xres_virtual, vinfo.yres_virtual, vinfo.bits_per_pixel);
-    
-    struct FrameBuffer result = {(char *)fbp, (int) vinfo.xoffset, (int) vinfo.yoffset,
-        (int) vinfo.bits_per_pixel, (int) finfo.line_length,
-        (float) screensize};
-    
-    return &result;
 
+    //printf("The framebuffer device was mapped to memory successfully.\n");
+    //printf("%dx%d, %dbpp\n", vinfo.xres_virtual, vinfo.yres_virtual, vinfo.bits_per_pixel);
+
+    FrameBuffer *result = malloc(sizeof(FrameBuffer));
+    result->fptr = (char *)fbp;
+    result->xOff = (int)vinfo.xoffset;
+    result->yOff = (int)vinfo.yoffset;
+    result->bits = (int)vinfo.bits_per_pixel;
+    result->lineLength = (int)finfo.line_length;
+    result->screenSize = (float)screensize;
+
+    return result;
+}
+
+
+
+/* Draw a pixel */
+void drawPixel(GameState *theGame)
+{
+    memcpy((int*)(theGame->framebuffer->fptr), theGame->canvas, 1920*1080*2);
 }

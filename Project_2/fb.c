@@ -1,5 +1,0 @@
-
-#define MAILBOX_BASE = 0xFE2000B880
-
-
-int 

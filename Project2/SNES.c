@@ -1,8 +1,8 @@
 /**
  * WINTER 2021 
- * CPSC 359 Project part 1, SNES controller. 
+ * CPSC 359 Project part 2 modified from part 1, SNES controller. 
  * 
- * Created by Zhijie Xia
+ * @author Zhijie Xia
  * UCID: 30096991
  */
 
@@ -209,9 +209,9 @@ void Print_Message()
 void MemoryMap()
 {
     /* open /dev/mem */
-    if ((mem_fd = open("/dev/mem", O_RDWR | O_SYNC)) < 0)
+    if ((mem_fd = open("/dev/gpiomem", O_RDWR | O_SYNC)) < 0)
     {
-        printf("can't open /dev/mem \n");
+        printf("can't open /dev/gpiomem \n");
         exit(-1);
     }
 
@@ -222,7 +222,7 @@ void MemoryMap()
         PROT_READ | PROT_WRITE,
         MAP_SHARED,
         mem_fd,
-        GPIO_BASE);
+        0x00200000);
 
     close(mem_fd); //close mem_fd after mmap
 
@@ -281,6 +281,11 @@ Direction getAKey()
     return NoDir;
 };
 
+/**
+ * @brief  freeUp the memory assigned to the SNES controller gpio pins
+ * @note   
+ * @retval None
+ */
 void endSNES()
 {
     FreeMappedMemory();

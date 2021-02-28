@@ -16,7 +16,7 @@ Game.o:Game.c
 FrameBuffer.o:FrameBuffer.c
 	gcc -c FrameBuffer.c 
 
-Image.o:Images/Images.c
+Images.o:Images.c
 	gcc -c Images.c
 clean:
 	rm *.o Game

@@ -63,12 +63,6 @@ typedef struct
 } Map;
 
 
-typedef struct
-{
-    int color;
-    int x, y;
-} Pixel;
-
 
 typedef struct{
 	char *fptr;		// framebuffer pointer
@@ -81,11 +75,30 @@ typedef struct{
 
 
 typedef struct{
+    unsigned int    width;
+    unsigned int    height;
+    unsigned char   image_pixels[40 * 40 * 2 + 1];
+}Image;
+
+
+
+typedef struct
+{
+    Image *carOneImage;
+    Image *frogImage;
+    Image *logImage;
+    Image *castleImage;
+    Image *castleLandImage;
+}Images;
+
+
+typedef struct{
     Frog *theFrog;
     Map *theMap;
     time_t startTime;
-    Pixel *pixel;
+    short canvas[1920*1080];
     FrameBuffer *framebuffer;
+    Images *images;
 }GameState;
 
 

@@ -8,8 +8,8 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
-#define SCREEN_LEFT 640
-#define SCREEN_RIGHT 640 + 1280
+#define SCREEN_LEFT 0
+#define SCREEN_RIGHT 1280
 
 #define BOUNDARY_WIDTH 2560
 #define BOUNDARY_HEIGTH 1440
@@ -49,6 +49,5 @@
 #define MAILBOX_OFFSET 0xB880
 
 
-#define clear() printf("\033[H\033[J")
 
 #endif

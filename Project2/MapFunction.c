@@ -6,29 +6,37 @@
 #include <stdbool.h>
 #include <string.h>
 
+
+/**
+ * @author Zhijie Xia
+ * @date Feb/01/2021
+ * Creating the map and update the map.
+ */  
+
+
 // The channel speed for each lane
 int CHANNEL_SPEED[17] = {0, 4, -5, 3, 0, 3, -3, 4, 0, 3, -4, 4, 0, -3, 5, 4, 0};
 
 // The initial map that in a human readable table, and the initMap function would base on this table to initialize the map
 char *INIT_MAP[17] = { // a '.' is a SaveFrog object, a 'x' is a KillFrog object
     "................................................................",
-    "..XXXX....XXXX....XXXX........XXXX....XXXX....XXXX....XXXX......",
+    "..XXXX...........XXXX............XXXX...........XXXX....XX......",
     "XX...XX...XX...XX.....XX........XX...XX...XX...XX...XX...XX.....",
     "....XXX....XXX......XXX....XXX......XXX......XXX........XXX.....",
     "................................................................",
-    "XXXX....XXXXX..XXX....XXX..XXXX...XXXX....XXX....XXX...XXXX....X",
-    ".XXX..XXXX...XX....XXXXX....XXXX....XX..XXX...XXXX.....XXX...XXX",
-    "XX...XXXX.....XXX....XXXX....XX..XX....XXXX....XXXX...XXX...X..X",
+    "XXXX......XXX.....XXX....XXX......XXXX...XXXX......XXX........XX",
+    ".XXX..XXX...XX....XXX......XXXX....XX....XXX.....XXXX.....XXX...",
+    "XX...XXXX.....XXX.....XXXX....XX....XX....XXXX....XXXX...XX.....",
     "................................................................",
-    "..XXXX....XXXX....XXXX........XXXX....XXXX....XXXX....XXXX......",
+    "..XXX......XXX....XXX..........XXX.....XXX.....XXX.....XXX......",
     "XX...XX...XX...XX...............XX...XX...XX...XX...............",
     "....XXX....XXX......XXX....XXX......XXX......XXX........XXX.....",
     "................................................................",
     "XXXX....XXXXX..XXX....XXX..XXXX...XXXX....XXX....XXX...XXXX....X",
-    "X.....XXXX...XX....XXXXX....XXXX....XX..XXX...XXXX.....XXX...XXX",
-    "XX...XXXX.....XXX....XXXX....XX..XX....XXXX....XXXX...XXX...X..X",
+    "....XXXX...XX......XXX....XXX.........XXX.,,..XXXX.....XXX...XXX",
+    "XX...XXXX.....XXX....XXXX........XX....XXXX.....XXX.....XX......",
     "................................................................"
-
+    // Frog is placed at line 16 (starts with 0);
 };
 
 /**

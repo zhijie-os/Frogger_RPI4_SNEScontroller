@@ -1,10 +1,12 @@
 #include "structdef.h"
+#include <string.h>
 #ifndef FRAMEBUFFER
 #define FRAMEBUFFER
 /* definitions */
 
 	
-struct FrameBuffer *initFbInfo(void);
+FrameBuffer *initFbInfo(void);
 
+void drawPixel(GameState *theGame);
 
 #endif

@@ -30,10 +30,10 @@ void reviveFrog(Frog *theFrog)
 {
     if (theFrog->life > 0)
     {
-        theFrog->x = BOUNDARY_WIDTH / 2 - CELL_PIXEL / 2;
+        theFrog->x = SCREEN_WIDTH/2 - CELL_PIXEL / 2;
         theFrog->speed = 500;
         theFrog->moveLeft = 100;
-        theFrog->lane = 0;
+        theFrog->lane = 16;
     }
 }
 
@@ -104,12 +104,13 @@ void moveFrog(Frog *theFrog, Direction dir)
     switch (dir)
     {
     case Up:
-        if (theFrog->lane < 16)
-            theFrog->lane += 1;
+        if (theFrog->lane <= 16)
+            theFrog->lane -= 1;
+        //printf("here!\n");
         break;
     case Down:
         if (theFrog->lane > 0)
-            theFrog->lane -= 1;
+            theFrog->lane += 1;
         break;
     case Left:
         if (theFrog->x > SCREEN_LEFT)
