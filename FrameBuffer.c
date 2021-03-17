@@ -10,7 +10,7 @@
 #include <linux/fb.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
-#include "toInclude/FrameBuffer.h"
+#include "FrameBuffer.h"
 
 FrameBuffer *initFbInfo(void)
 {
@@ -22,6 +22,11 @@ FrameBuffer *initFbInfo(void)
 
     // Open the file for reading and writing
     fbfd = open("/dev/fb0", O_RDWR);
+    if( access( "/dev/fb0", F_OK ) == 0 ) {
+        printf("pass\n\n");
+    } else {
+        printf("Failed\n\n");
+    }
     if (fbfd == -1)
     {
         perror("Error: cannot open framebuffer device");

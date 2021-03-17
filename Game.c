@@ -1,10 +1,10 @@
 // #include "toInclude/constdef.h"
 // #include "toInclude/structdef.h"
-#include "toInclude/FrogFunction.h"
-#include "toInclude/MapFunction.h"
-#include "toInclude/SNES.h"
-#include "toInclude/FrameBuffer.h"
-#include "toInclude/Images.h"
+#include "FrogFunction.h"
+#include "MapFunction.h"
+#include "SNES.h"
+#include "FrameBuffer.h"
+#include "Images.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -72,7 +72,7 @@ void renderScreen()
     {
         for (int j = 0; j < 1920; j++)
         {
-            theGame.canvas[1920 * i + j] = 0x07E0;
+            theGame.canvas[1920 * i + j] = 0x0000;
         }
     }
 }

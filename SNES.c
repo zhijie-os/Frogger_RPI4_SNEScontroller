@@ -13,8 +13,8 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #include <stdbool.h>
-#include "toInclude/SNES.h"
-#include "toInclude/structdef.h"
+#include "SNES.h"
+#include "structdef.h"
 // pointers for mmap
 int mem_fd;
 void *gpio_map;

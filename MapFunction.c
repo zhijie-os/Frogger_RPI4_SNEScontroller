@@ -1,4 +1,4 @@
-#include "toInclude/MapFunction.h"
+#include "MapFunction.h"
 
 #include <stdio.h>
 #include <stdlib.h>
