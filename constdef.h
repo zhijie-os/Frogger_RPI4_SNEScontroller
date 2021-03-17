@@ -5,8 +5,8 @@
 #define MAP_SIZE 17
 
 #define CELL_PIXEL 40
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 
 #define SCREEN_LEFT 0
 #define SCREEN_RIGHT 1280

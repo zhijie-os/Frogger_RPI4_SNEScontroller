@@ -15,6 +15,7 @@
 
 GameState theGame;
 
+
 /**
  * @brief  render the map into canvas
  * @note   
@@ -61,6 +62,11 @@ void renderFrog()
     }
 }
 
+void renderTime(){
+    int timeNow = theGame.theFrog->timeLeft;
+    printf("%d\n", timeNow);
+}
+
 /**
  * @brief  render the bottom layer of the canvas
  * @note   
@@ -68,11 +74,11 @@ void renderFrog()
  */
 void renderScreen()
 {
-    for (int i = 0; i < 1080; i++)
+    for (int i = 0; i < SCREEN_HEIGHT; i++)
     {
-        for (int j = 0; j < 1920; j++)
+        for (int j = 0; j < SCREEN_WIDTH; j++)
         {
-            theGame.canvas[1920 * i + j] = 0x0000;
+            theGame.canvas[SCREEN_WIDTH * i + j] = 0x0000;
         }
     }
 }
@@ -87,8 +93,10 @@ void render()
     renderScreen();
     renderFrog();
     renderMap();
+    renderTime();
     drawPixel(&theGame);
 }
+
 
 /**
  * @brief  initalize the Game
