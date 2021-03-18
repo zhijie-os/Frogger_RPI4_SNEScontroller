@@ -258,6 +258,33 @@ MapFunction.c.s:
 	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/MapFunction.c.s
 .PHONY : MapFunction.c.s
 
+NumberRender.o: NumberRender.c.o
+
+.PHONY : NumberRender.o
+
+# target to build an object file
+NumberRender.c.o:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/NumberRender.c.o
+.PHONY : NumberRender.c.o
+
+NumberRender.i: NumberRender.c.i
+
+.PHONY : NumberRender.i
+
+# target to preprocess a source file
+NumberRender.c.i:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/NumberRender.c.i
+.PHONY : NumberRender.c.i
+
+NumberRender.s: NumberRender.c.s
+
+.PHONY : NumberRender.s
+
+# target to generate assembly for a file
+NumberRender.c.s:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/NumberRender.c.s
+.PHONY : NumberRender.c.s
+
 SNES.o: SNES.c.o
 
 .PHONY : SNES.o
@@ -309,6 +336,9 @@ help:
 	@echo "... MapFunction.o"
 	@echo "... MapFunction.i"
 	@echo "... MapFunction.s"
+	@echo "... NumberRender.o"
+	@echo "... NumberRender.i"
+	@echo "... NumberRender.s"
 	@echo "... SNES.o"
 	@echo "... SNES.i"
 	@echo "... SNES.s"

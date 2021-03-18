@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/tmp/tmp.fL6wczbRVO/Game.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/Game.c.o"
   "/tmp/tmp.fL6wczbRVO/Images.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/Images.c.o"
   "/tmp/tmp.fL6wczbRVO/MapFunction.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/MapFunction.c.o"
+  "/tmp/tmp.fL6wczbRVO/NumberRender.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/NumberRender.c.o"
   "/tmp/tmp.fL6wczbRVO/SNES.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/SNES.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

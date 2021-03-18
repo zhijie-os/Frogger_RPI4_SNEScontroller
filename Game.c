@@ -62,6 +62,11 @@ void renderFrog()
     }
 }
 
+/**
+ * @brief  Render the time stamp on the top right corner of the canvas
+ * @note
+ * @retval None
+ */
 void renderTime(){
     int timeNow = theGame.theFrog->timeLeft;
     printf("%d\n", timeNow);

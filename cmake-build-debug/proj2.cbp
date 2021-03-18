@@ -105,6 +105,12 @@
 		<Unit filename="/tmp/tmp.fL6wczbRVO/MapFunction.h">
 			<Option target="proj2"/>
 		</Unit>
+		<Unit filename="/tmp/tmp.fL6wczbRVO/NumberRender.c">
+			<Option target="proj2"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.fL6wczbRVO/NumberRender.h">
+			<Option target="proj2"/>
+		</Unit>
 		<Unit filename="/tmp/tmp.fL6wczbRVO/SNES.c">
 			<Option target="proj2"/>
 		</Unit>

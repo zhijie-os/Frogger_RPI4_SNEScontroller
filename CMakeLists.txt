@@ -16,4 +16,4 @@ add_executable(proj2 Game.c
         SNES.h
         SNES.c
         structdef.h
-        )
+        NumberRender.c NumberRender.h)

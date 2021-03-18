@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/proj2.dir/Images.c.o"
   "CMakeFiles/proj2.dir/MapFunction.c.o"
   "CMakeFiles/proj2.dir/SNES.c.o"
+  "CMakeFiles/proj2.dir/NumberRender.c.o"
   "proj2.pdb"
   "proj2"
 )
