@@ -101,5 +101,10 @@ typedef struct{
     Images *images;
 }GameState;
 
+typedef struct {
+    int color;
+    int x, y;
+} Pixel;
+
 
 #endif

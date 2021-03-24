@@ -78,6 +78,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/tmp/tmp.fL6wczbRVO/CharRender.c">
+			<Option target="proj2"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.fL6wczbRVO/CharRender.h">
+			<Option target="proj2"/>
+		</Unit>
 		<Unit filename="/tmp/tmp.fL6wczbRVO/FrameBuffer.c">
 			<Option target="proj2"/>
 		</Unit>
@@ -115,6 +121,12 @@
 			<Option target="proj2"/>
 		</Unit>
 		<Unit filename="/tmp/tmp.fL6wczbRVO/SNES.h">
+			<Option target="proj2"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.fL6wczbRVO/Seg7Simulator.c">
+			<Option target="proj2"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.fL6wczbRVO/Seg7Simulator.h">
 			<Option target="proj2"/>
 		</Unit>
 		<Unit filename="/tmp/tmp.fL6wczbRVO/constdef.h">

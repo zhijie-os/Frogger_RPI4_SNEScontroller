@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/tmp/tmp.fL6wczbRVO/CharRender.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/CharRender.c.o"
   "/tmp/tmp.fL6wczbRVO/FrameBuffer.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/FrameBuffer.c.o"
   "/tmp/tmp.fL6wczbRVO/FrogFunction.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/FrogFunction.c.o"
   "/tmp/tmp.fL6wczbRVO/Game.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/Game.c.o"
@@ -11,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/tmp/tmp.fL6wczbRVO/MapFunction.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/MapFunction.c.o"
   "/tmp/tmp.fL6wczbRVO/NumberRender.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/NumberRender.c.o"
   "/tmp/tmp.fL6wczbRVO/SNES.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/SNES.c.o"
+  "/tmp/tmp.fL6wczbRVO/Seg7Simulator.c" "/tmp/tmp.fL6wczbRVO/cmake-build-debug/CMakeFiles/proj2.dir/Seg7Simulator.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

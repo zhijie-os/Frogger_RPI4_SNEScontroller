@@ -123,6 +123,33 @@ proj2/fast:
 	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/build
 .PHONY : proj2/fast
 
+CharRender.o: CharRender.c.o
+
+.PHONY : CharRender.o
+
+# target to build an object file
+CharRender.c.o:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/CharRender.c.o
+.PHONY : CharRender.c.o
+
+CharRender.i: CharRender.c.i
+
+.PHONY : CharRender.i
+
+# target to preprocess a source file
+CharRender.c.i:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/CharRender.c.i
+.PHONY : CharRender.c.i
+
+CharRender.s: CharRender.c.s
+
+.PHONY : CharRender.s
+
+# target to generate assembly for a file
+CharRender.c.s:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/CharRender.c.s
+.PHONY : CharRender.c.s
+
 FrameBuffer.o: FrameBuffer.c.o
 
 .PHONY : FrameBuffer.o
@@ -312,6 +339,33 @@ SNES.c.s:
 	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/SNES.c.s
 .PHONY : SNES.c.s
 
+Seg7Simulator.o: Seg7Simulator.c.o
+
+.PHONY : Seg7Simulator.o
+
+# target to build an object file
+Seg7Simulator.c.o:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/Seg7Simulator.c.o
+.PHONY : Seg7Simulator.c.o
+
+Seg7Simulator.i: Seg7Simulator.c.i
+
+.PHONY : Seg7Simulator.i
+
+# target to preprocess a source file
+Seg7Simulator.c.i:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/Seg7Simulator.c.i
+.PHONY : Seg7Simulator.c.i
+
+Seg7Simulator.s: Seg7Simulator.c.s
+
+.PHONY : Seg7Simulator.s
+
+# target to generate assembly for a file
+Seg7Simulator.c.s:
+	$(MAKE) -f CMakeFiles/proj2.dir/build.make CMakeFiles/proj2.dir/Seg7Simulator.c.s
+.PHONY : Seg7Simulator.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -321,6 +375,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... proj2"
 	@echo "... edit_cache"
+	@echo "... CharRender.o"
+	@echo "... CharRender.i"
+	@echo "... CharRender.s"
 	@echo "... FrameBuffer.o"
 	@echo "... FrameBuffer.i"
 	@echo "... FrameBuffer.s"
@@ -342,6 +399,9 @@ help:
 	@echo "... SNES.o"
 	@echo "... SNES.i"
 	@echo "... SNES.s"
+	@echo "... Seg7Simulator.o"
+	@echo "... Seg7Simulator.i"
+	@echo "... Seg7Simulator.s"
 .PHONY : help
 
 

@@ -16,6 +16,7 @@ CMakeFiles/proj2.dir/Game.c.o: ../FrogFunction.h
 CMakeFiles/proj2.dir/Game.c.o: ../Game.c
 CMakeFiles/proj2.dir/Game.c.o: ../Images.h
 CMakeFiles/proj2.dir/Game.c.o: ../MapFunction.h
+CMakeFiles/proj2.dir/Game.c.o: ../NumberRender.h
 CMakeFiles/proj2.dir/Game.c.o: ../SNES.h
 CMakeFiles/proj2.dir/Game.c.o: ../constdef.h
 CMakeFiles/proj2.dir/Game.c.o: ../structdef.h
@@ -29,6 +30,10 @@ CMakeFiles/proj2.dir/MapFunction.c.o: ../MapFunction.c
 CMakeFiles/proj2.dir/MapFunction.c.o: ../MapFunction.h
 CMakeFiles/proj2.dir/MapFunction.c.o: ../constdef.h
 CMakeFiles/proj2.dir/MapFunction.c.o: ../structdef.h
+
+CMakeFiles/proj2.dir/NumberRender.c.o: ../NumberRender.c
+CMakeFiles/proj2.dir/NumberRender.c.o: ../NumberRender.h
+CMakeFiles/proj2.dir/NumberRender.c.o: ../constdef.h
 
 CMakeFiles/proj2.dir/SNES.c.o: ../SNES.c
 CMakeFiles/proj2.dir/SNES.c.o: ../SNES.h
