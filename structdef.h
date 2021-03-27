@@ -8,12 +8,24 @@
 
 typedef enum
 {
-    Bus,
-    Car,
-    RaceCar,
+    CarOne,
+    CarTwo,
+    CarThree,
+    CarFour,
+    CarFive,
+    FireBall,
+    IceBall,
+    LightBall,
+    VenomOne,
+    VenomTwo,
     Turtle,
     Log,
-    Castle
+    Water,
+    Fly,
+    Bug,
+    Castle,
+    CastleLand,
+    Road
 } Object;
 
 typedef enum
@@ -85,10 +97,25 @@ typedef struct{
 typedef struct
 {
     Image *carOneImage;
+    Image *carTwoImage;
+    Image *carThreeImage;
+    Image *carFourImage;
+    Image *carFiveImage;
+    Image *venomOneImage;
+    Image *venomTwoImage;
+    Image *fireBallImage;
+    Image *iceBallImage;
+    Image *lightBallImage;
+    Image *flyImage;
+    Image *bugImage;
+    Image *frogCarryBugImage;
     Image *frogImage;
     Image *logImage;
     Image *castleImage;
     Image *castleLandImage;
+    Image *turtleImage;
+    Image *saveAreaImage;
+    Image *waterImage;
 }Images;
 
 

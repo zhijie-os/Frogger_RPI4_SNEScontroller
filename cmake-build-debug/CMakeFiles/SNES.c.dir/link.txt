@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/SNES.c.dir/FrameBuffer.c.o CMakeFiles/SNES.c.dir/FrogFunction.c.o CMakeFiles/SNES.c.dir/Game.c.o CMakeFiles/SNES.c.dir/Images.c.o CMakeFiles/SNES.c.dir/MapFunction.c.o  -o SNES.c 

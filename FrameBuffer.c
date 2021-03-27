@@ -1,7 +1,4 @@
-/*
-* Modified from http://cep.xray.aps.anl.gov/software/qt4-x11-4.2.2/qtopiacore-testingframebuffer.html
-* for the purpose of assignment 4 CPSC359 P19
-*/
+
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -61,8 +58,8 @@ FrameBuffer *initFbInfo(void)
         exit(4);
     }
 
-    //printf("The framebuffer device was mapped to memory successfully.\n");
-    //printf("%dx%d, %dbpp\n", vinfo.xres_virtual, vinfo.yres_virtual, vinfo.bits_per_pixel);
+    printf("The framebuffer device was mapped to memory successfully.\n");
+    printf("%dx%d, %dbpp\n", vinfo.xres_virtual, vinfo.yres_virtual, vinfo.bits_per_pixel);
 
     FrameBuffer *result = malloc(sizeof(FrameBuffer));
     result->fptr = (char *)fbp;
@@ -71,7 +68,8 @@ FrameBuffer *initFbInfo(void)
     result->bits = (int)vinfo.bits_per_pixel;
     result->lineLength = (int)finfo.line_length;
     result->screenSize = (float)screensize;
-
+    printf("%c,%d,%d,%d,%d,%f\n here",result->fptr,result->xOff,result->yOff,result->bits,result->lineLength,result->screenSize);
+    
     return result;
 }
 
@@ -80,5 +78,5 @@ FrameBuffer *initFbInfo(void)
 /* Draw a pixel */
 void drawPixel(GameState *theGame)
 {
-    memcpy((int*)(theGame->framebuffer->fptr), theGame->canvas, 1920*1080*2);
+    memcpy(theGame->framebuffer->fptr, theGame->canvas, 1920*1080*2);
 }

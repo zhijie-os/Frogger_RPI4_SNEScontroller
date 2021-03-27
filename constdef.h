@@ -2,7 +2,7 @@
 #define CONSTDEF_H
 
 #define LANE_SIZE 64
-#define MAP_SIZE 17
+#define MAP_SIZE 19
 
 #define CELL_PIXEL 40
 #define SCREEN_WIDTH 1920
