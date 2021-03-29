@@ -63,13 +63,6 @@ void renderMap()
                 case 6:
                     currentImage = theGame.images->fireBallImage;
                     break;
-                case 7:
-                    // should never be in here
-                    break;
-
-                case 13:
-                    // should never been in here
-                    break;
 
                 case 14:
                     currentImage = theGame.images->carFiveImage;
@@ -84,7 +77,7 @@ void renderMap()
                     break;
 
                 case 17:
-                   currentImage = theGame.images->carFourImage;
+                   currentImage = theGame.images->carTwoImage;
                     break;
 
                 case 18:
@@ -112,7 +105,7 @@ void renderMap()
             else
             {
 
-                if (i >= 7 && i <= 14)
+                if (i >= 8 && i <= 12)
                 {
                     switch (i)
                     {
@@ -252,9 +245,9 @@ void renderScreen()
 void render()
 {
     renderScreen();
-    renderFrog();
     renderMap();
-    renderTime();
+    renderFrog();
+    //renderTime();
     drawPixel(&theGame);
 }
 
@@ -304,10 +297,19 @@ int main()
     // shared.turn = 1;
     while (1)
     {
-        //usleep(8000);
+        if(counter ==0){
+            theGame.theFrog->canMove =true;
+        }
+        else if(counter == 500){
+            counter = 0;
+        }
+        else{
+            theGame.theFrog->canMove =false;
+        }
+        counter++;
         play();
         render();
-        //printf("running!\n");
+
     }
     endSNES();
 }

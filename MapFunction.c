@@ -1,3 +1,5 @@
+
+
 #include "MapFunction.h"
 
 #include <stdio.h>
@@ -5,6 +7,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <string.h>
+
 
 /**
  * @author Zhijie Xia
@@ -23,33 +26,33 @@ char *INIT_MAP[20] = {
     // a '.' is a SaveFrog object, a 'x' is a KillFrog object
 
     //Castle
-    "XXXXXX......XXXXXX......XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    "XXXXX..XX..XX..XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     // Unimplemented
-    "..X..X..X..X..X...........X..X..X..X..X.........X..X..X..X..X...",
-    "X.....X.....X.....X.......X........X...........X.........X......",
-    "................................................................",
+    "..X..X..X..X..X...........X..X..X..X..X.........",
+    "X.....X.....X.....X.......X........X...........X",
+    "................................................",
 
     // Unimplemented
-    "..XXXX...........XXXX............XXXX...........XXXX....XX......",
-    "XX...XX...XX...XX.....XX........XX...XX...XX...XX...XX...XX.....",
-    "....XXX....XXX......XXX....XXX......XXX......XXX........XXX.....",
-    "................................................................",
+    "..XXXX...........XXXX............XXXX...........",
+    "XX...XX...XX...XX.....XX........XX...XX...XX...X",
+    "....XXX....XXX......XXX....XXX......XXX......XXX",
+    "................................................",
 
     // Channel with logs and turtles
-    "XXXX......XXX.....XXX....XXX......XXXX...XXXX......XXX........XX",
-    ".XXX..XXX...XX....XXX......XXXX....XX....XXX.....XXXX.....XXX...",
-    "XX...XXXX.....XXX.....XXXX....XX....XX....XXXX....XXXX...XX.....",
-    "..XX..XX..XXXXXXX................................................",
-    "XX...XX...XX...XX...XX...XX...XX...XX...XX...XX...XX...XX...XX..",
-    "................................................................",
+    "XXXXXX...XXXX...XXXXX...XXXX....XXXXXX..XXXXX...",
+    ".XXX..XXX...XX....XXX......XXXX....XX....XXX....",
+    "XX...XXXX.....XXX.....XXXX....XX....XX....XXXX..",
+    "..XXXXXX..XX..XXXXXXX...XXXX...XXX....XXXXXX....",
+    "XX...XX...XX...XX...XX...XX...XX...XX...XX...XX.",
+    "................................................",
 
     // Road which has cars on it
-    "....XX.......XX.......XX.......XX.......XX.......XX........XX...",
-    "...X..............X..............X..............X.........X.....",
-    "X.......X.......X........X........X......X........X.......X.....",
-    "...X.....X.....X.....X.....X.....X.....X.....X.....X.....X.....X",
-    "X....X....X....X....X....X....X....X....X....X....X....X....X...",
-    "................................................................"
+    ".......................XX.......................",
+    "...X..............X..............X..............",
+    "X.......X.......X........X........X......X......",
+    "...X.....X.....X.....X.....X.....X.....X.....X..",
+    "X..........X........X..........X..........X.....",
+    "................................................"
 
 };
 
@@ -95,11 +98,9 @@ void initMap(Map *theMap)
  */
 void updateMap(Map *theMap, int upper, int lower)
 {
-
     // only update a specific area of the game map
     for (int i = lower; i <= upper; i++) // bounded by the upper and lower provided.
     {
-
         for (int j = 0; j < LANE_SIZE; j++)
         { // for each cell, shift the cell left or right according to the channel speed
             theMap->lanes[i].cells[j].x += CHANNEL_SPEED[i];
@@ -118,7 +119,7 @@ void updateMap(Map *theMap, int upper, int lower)
 void cellKeepInRange(Cell *outRange)
 {
     // if the cell is outRanged from left, shift a BOUNDARY_WIDTH right
-    if (outRange->x < 0)
+    if ((outRange->x+CELL_PIXEL) < 0)
     {
         outRange->x += BOUNDARY_WIDTH;
     }
@@ -128,3 +129,4 @@ void cellKeepInRange(Cell *outRange)
         outRange->x -= BOUNDARY_WIDTH;
     }
 }
+

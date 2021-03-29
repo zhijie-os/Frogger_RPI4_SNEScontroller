@@ -1,6 +1,9 @@
-
 #include "FrogFunction.h"
 
+int Map_SPEED[20] = {0, 7, -6, 0,
+                         4, -3, 5, 0,
+                         4, 5, -4, 6, -5, 0,
+                         -2, 4, -3, 5, -4, 0};
 
 /**
  * @brief  Initialize the Frog
@@ -33,7 +36,7 @@ void reviveFrog(Frog *theFrog)
         theFrog->x = SCREEN_WIDTH/2 - CELL_PIXEL / 2;
         theFrog->speed = 500;
         theFrog->moveLeft = 100;
-        theFrog->lane = 16;
+        theFrog->lane = 19;
     }
 }
 
@@ -51,6 +54,7 @@ void updateFrog(Frog *theFrog, Map *theMap, Direction dir)
     {
         moveFrog(theFrog, dir);
     }
+    FrogMoveWithObject(theFrog,theMap);
     if (willFrogDie(theFrog, theMap))
     {
         if (theFrog->life <= 0)
@@ -62,6 +66,7 @@ void updateFrog(Frog *theFrog, Map *theMap, Direction dir)
             reviveFrog(theFrog);
         }
     }
+    FrogOutSideScreen(theFrog);
 }
 
 
@@ -104,25 +109,56 @@ void moveFrog(Frog *theFrog, Direction dir)
     switch (dir)
     {
     case Up:
-        if (theFrog->lane <= 16)
+        if (theFrog->lane <= 19&&theFrog->lane>0)
             theFrog->lane -= 1;
         //printf("here!\n");
         break;
     case Down:
-        if (theFrog->lane > 0)
+        if (theFrog->lane > 0&&theFrog->lane<19)
             theFrog->lane += 1;
         break;
     case Left:
-        if (theFrog->x > SCREEN_LEFT)
+        if (theFrog->x-CELL_PIXEL >= GAME_SCREEN_LEFT)
             theFrog->x -= CELL_PIXEL;
         break;
 
     case Right:
-        if (theFrog->x < SCREEN_RIGHT)
+        if (theFrog->x+CELL_PIXEL <= GAME_SCREEN_RIGHT)
             theFrog->x += CELL_PIXEL;
         break;
 
     default:
         break;
+    }
+}
+
+
+/**
+ * @brief  Check whether Frog is overlapping with a object that can kill frog
+ * @note   
+ * @param  *theFrog: 
+ * @param  *theMap: 
+ * @retval 
+ */
+void FrogMoveWithObject(Frog *theFrog, Map *theMap)
+{
+    for (int i = 0; i < LANE_SIZE; i++)
+    {
+        Cell current = theMap->lanes[theFrog->lane].cells[i];
+        if (current.fatal == SaveFrog && theFrog->lane >=8 && theFrog->lane <=12 )
+        {
+            if (current.x <= theFrog->x && theFrog->x  <= (current.x + CELL_PIXEL)||current.x <= (theFrog->x+CELL_PIXEL) && (theFrog->x + CELL_PIXEL) <= (current.x + CELL_PIXEL))
+            {
+                theFrog->x += Map_SPEED[theFrog->lane];
+                break;
+            }
+        }
+
+    }
+}
+
+void FrogOutSideScreen(Frog *theFrog){
+    if (theFrog->x+CELL_PIXEL<GAME_SCREEN_LEFT||theFrog->x>GAME_SCREEN_RIGHT||theFrog->lane<0||theFrog->lane>19){
+        reviveFrog(theFrog);
     }
 }
