@@ -1,10 +1,10 @@
 #include "FrogFunction.h"
 
 int Map_SPEED[MAP_SIZE] = {0,
-                               5, 7, -6, 6, -5, 0,
-                               8, -7, 6, -7, 0,
-                               -5, 6, -7, 7, 0,
-                               -6, 7, -7, 6, -5, 0};
+                           5, 7, -6, 6, -5, 0,
+                           8, -7, 6, -7, 0,
+                           -5, 6, -7, 7, 0,
+                           -6, 7, -7, 6, -5, 0};
 /**
  * @brief  Initialize the Frog
  * @note   
@@ -13,7 +13,7 @@ int Map_SPEED[MAP_SIZE] = {0,
  */
 void initFrog(Frog *theFrog)
 {
-    theFrog->life = 3;
+    theFrog->life = 4;
     theFrog->canMove = true;
     theFrog->score = 0;
     theFrog->timeLeft = 60;
@@ -33,9 +33,9 @@ void reviveFrog(Frog *theFrog)
 {
     if (theFrog->life > 0)
     {
+        theFrog->life -= 1;
         theFrog->x = SCREEN_WIDTH / 2;
-        theFrog->speed = 500;
-        theFrog->moveLeft = 100;
+        theFrog->moveLeft = 200;
         theFrog->lane = 22;
     }
 }
@@ -65,6 +65,9 @@ void updateFrog(Frog *theFrog, Map *theMap, Direction dir)
         {
             reviveFrog(theFrog);
         }
+    }
+    if(theFrog->timeLeft<=0 || theFrog->moveLeft){
+        theFrog->loseFlag = true;
     }
     FrogOutSideScreen(theFrog);
     if (theFrog->lane < theFrog->minimumLaneArrived)
@@ -109,10 +112,10 @@ bool willFrogDie(Frog *theFrog, Map *theMap)
  */
 void moveFrog(Frog *theFrog, Direction dir)
 {
-    // if (dir <= 3 && dir >= 0)
-    // {
-    //     theFrog->canMove = false;
-    // }
+    if (dir <= 3 && dir >= 0)
+    {
+        theFrog->moveLeft -= 1;
+    }
     switch (dir)
     {
     case Up:

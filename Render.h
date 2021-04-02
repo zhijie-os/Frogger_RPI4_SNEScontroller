@@ -13,6 +13,5 @@ void renderPause(GameState *theGame);
 
 void renderScreen(GameState *theGame);
 
-void render(int lower,GameState *theGame);
 
 #endif

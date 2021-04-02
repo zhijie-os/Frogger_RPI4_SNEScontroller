@@ -15,6 +15,11 @@
 #include <time.h>
 #include <pthread.h>
 
+struct shared
+{
+    GameState *theGame;
+    int turn;
+} shared;
 
 GameState theGame;
 
@@ -43,11 +48,48 @@ void initGame()
  */
 void play()
 {
-
     Direction key;
     key = getAKey();
     updateMap(theGame.theMap, 22, 0);
     updateFrog(theGame.theFrog, theGame.theMap, key);
+}
+
+/**
+ * @brief  render everything in order and show the canvas on the stage
+ * @note   
+ * @retval None
+ */
+void render(int lower)
+{
+    renderScreen(&theGame);
+    renderMap(&theGame);
+    renderFrog(&theGame);
+    memcpy(theGame.stage, theGame.canvas + lower * BOUNDARY_WIDTH * CELL_PIXEL, BOUNDARY_WIDTH * BOUNDARY_HEIGTH * 2);
+    //renderTime();
+    drawPixel(&theGame);
+}
+
+void *playThreadFunction(void *infor)
+{
+    while (shared.turn != 1)
+        ;
+    play();
+    shared.turn = 2;
+}
+
+void *renderThreadFunction(void *infor)
+{
+    while (shared.turn != 2)
+        ;
+    if (theGame.theFrog->lane <= 11)
+    {
+        render(0);
+    }
+    else
+    {
+        render(5);
+    }
+    shared.turn = 0;
 }
 
 /**
@@ -59,24 +101,21 @@ int main()
 {
     initGame();
     time_t start = time(0);
-    time_t end;
-    int counter = 0;
-    // shared.turn = 1;
-    while (1)
+    shared.turn = 0;
+    // init 2 thread ids
+    pthread_t playThread;
+    pthread_t renderThread;
+    pthread_create(&playThread, NULL, play, NULL);
+    pthread_create(&renderThread, NULL, play, NULL);
+
+    while (!theGame.theFrog->winFlag && !theGame.theFrog->loseFlag)
     {
-        // if(!theGame.theFrog->canMove&&counter >=10){
-        //     theGame.theFrog->canMove =true;
-        //     counter=0;
-        // }
-        play();
-        if(theGame.theFrog->lane<=11){
-            render(0,&theGame);
-        }
-        else{
-            render(5,&theGame);
-        }
-        usleep(50000);
-        counter++;
+        while (shared.turn != 0)
+            ;
+        theGame.theFrog->timeLeft -= (time(0) - start);
+        shared.turn = 1;
+        //usleep(10000);
     }
+
     endSNES();
 }

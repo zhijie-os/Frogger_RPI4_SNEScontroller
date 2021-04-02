@@ -217,17 +217,3 @@ void renderScreen(GameState *theGame)
         theGame->canvas[i] = 0x0000;
 }
 
-/**
- * @brief  render everything in order and show the canvas on the stage
- * @note   
- * @retval None
- */
-void render(int lower,GameState *theGame)
-{
-    renderScreen(theGame);
-    renderMap(theGame);
-    renderFrog(theGame);
-    memcpy(theGame->stage,theGame->canvas+lower*BOUNDARY_WIDTH*CELL_PIXEL,BOUNDARY_WIDTH*BOUNDARY_HEIGTH*2);
-    //renderTime();
-    drawPixel(theGame);
-}

@@ -46,7 +46,6 @@ typedef enum
 typedef struct
 {
     int x;
-    int speed;
     int life;
     int moveLeft;
     int lane;
