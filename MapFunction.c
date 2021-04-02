@@ -26,7 +26,7 @@ char *INIT_MAP[MAP_SIZE] = {
     // a '.' is a SaveFrog object, a 'x' is a KillFrog object
 
     //Castle
-    "XXXXX..XX..XX..XXXXXXXXXXXXXXXXX",
+    "XXXXXXXXXX..XXX..XXX..XXXXXXXXXXX",
 
     // Channel with logs and turtles
     "XX...XX....XXXX...XXXX...XXXX....",//1
