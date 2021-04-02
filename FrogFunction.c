@@ -36,7 +36,7 @@ void reviveFrog(Frog *theFrog)
         theFrog->x = SCREEN_WIDTH / 2 - CELL_PIXEL / 2;
         theFrog->speed = 500;
         theFrog->moveLeft = 100;
-        theFrog->lane = 19;
+        theFrog->lane = 22;
     }
 }
 

@@ -22,12 +22,12 @@ GameState theGame;
  * @note   
  * @retval None
  */
-void renderMap(int lower)
+void renderMap()
 {
     Cell current;
     Image *currentImage;
     // outer loop: for each lane/channel
-    for (int i = lower; i < 16; i++)
+    for (int i = 0; i < MAP_SIZE; i++)
     {
         // inner loop: for each cell in the lane/channel
         for (int j = 0; j < LANE_SIZE; j++)
@@ -62,7 +62,6 @@ void renderMap(int lower)
                 case 10:
                     currentImage = theGame.images->venomTwoImage;
                     break;
-
 
                 case 12:
                     currentImage = theGame.images->greenBallImage;
@@ -133,7 +132,7 @@ void renderMap(int lower)
                         break;
                     }
                 }
-                if (i == 0 || i == 6 || i ==11 || i == 16 || i == 22)
+                if (i == 0 || i == 6 || i == 11 || i == 16 || i == 22)
                 {
                     currentImage = theGame.images->saveAreaImage;
                 }
@@ -144,12 +143,11 @@ void renderMap(int lower)
                 {
                     for (int p = 0; p < CELL_PIXEL; p++)
                     {
-                        if (i - lower >= 0)
-                        {
-                            theGame.canvas[((i - lower) * CELL_PIXEL + o) * BOUNDARY_WIDTH + current.x + p] =
-                                currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2] << 8 |
-                                currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2 + 1];
-                        }
+
+                        theGame.canvas[(i * CELL_PIXEL + o) * BOUNDARY_WIDTH + current.x + p] =
+                            currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2] << 8 |
+                            currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2 + 1];
+
                         // else{
                         //     break;
                         // }
@@ -165,7 +163,7 @@ void renderMap(int lower)
  * @note   
  * @retval None
  */
-void renderFrog(int lower)
+void renderFrog()
 {
 
     for (int i = 0; i < CELL_PIXEL; i++)
@@ -229,7 +227,7 @@ void renderPause()
  */
 void renderScreen()
 {
-    for (int i = 0; i < 1280 * 720; i++)
+    for (int i = 0; i < BOUNDARY_WIDTH * 920; i++)
         theGame.canvas[i] = 0x0000;
 }
 
@@ -238,11 +236,12 @@ void renderScreen()
  * @note   
  * @retval None
  */
-void render()
+void render(int lower)
 {
     renderScreen();
-    renderMap(0);
-    //renderFrog();
+    renderMap();
+    renderFrog();
+    memcpy(theGame.stage,theGame.canvas+lower*BOUNDARY_WIDTH*CELL_PIXEL,BOUNDARY_WIDTH*BOUNDARY_HEIGTH*2);
     //renderTime();
     drawPixel(&theGame);
 }
@@ -275,7 +274,7 @@ void play()
 
     Direction key;
     key = getAKey();
-    updateMap(theGame.theMap, 19, 0);
+    updateMap(theGame.theMap, 22, 0);
     updateFrog(theGame.theFrog, theGame.theMap, key);
 }
 
@@ -295,7 +294,12 @@ int main()
     {
 
         play();
-        render();
+        if(theGame.theFrog->lane<=16){
+            render(0);
+        }
+        else{
+            render(5);
+        }
     }
     endSNES();
 }

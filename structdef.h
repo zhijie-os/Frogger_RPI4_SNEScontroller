@@ -130,7 +130,8 @@ typedef struct{
     Frog *theFrog;
     Map *theMap;
     time_t startTime;
-    short canvas[1280*720];
+    short stage[1280*720];
+    short canvas[1280*920];
     FrameBuffer *framebuffer;
     Images *images;
 }GameState;
