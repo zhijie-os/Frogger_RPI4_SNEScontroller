@@ -1,11 +1,10 @@
 #include "FrogFunction.h"
 
 int Map_SPEED[MAP_SIZE] = {0,
-                     4, 5, -4, 6, -5, 0,
-                     7, -6, 4, -3, 0,
-                     -5, 4, -3, 5, 0,
-                     -2, 4, -3, 5, -4, 0};
-
+                               5, 7, -6, 6, -5, 0,
+                               8, -7, 6, -7, 0,
+                               -5, 6, -7, 7, 0,
+                               -6, 7, -7, 6, -5, 0};
 /**
  * @brief  Initialize the Frog
  * @note   
@@ -18,6 +17,7 @@ void initFrog(Frog *theFrog)
     theFrog->canMove = true;
     theFrog->score = 0;
     theFrog->timeLeft = 60;
+    theFrog->minimumLaneArrived = 22;
     theFrog->loseFlag = false;
     theFrog->winFlag = false;
     reviveFrog(theFrog);
@@ -33,7 +33,7 @@ void reviveFrog(Frog *theFrog)
 {
     if (theFrog->life > 0)
     {
-        theFrog->x = SCREEN_WIDTH / 2 - CELL_PIXEL / 2;
+        theFrog->x = SCREEN_WIDTH / 2;
         theFrog->speed = 500;
         theFrog->moveLeft = 100;
         theFrog->lane = 22;
@@ -67,6 +67,10 @@ void updateFrog(Frog *theFrog, Map *theMap, Direction dir)
         }
     }
     FrogOutSideScreen(theFrog);
+    if (theFrog->lane < theFrog->minimumLaneArrived)
+    {
+        theFrog->score = theFrog->score + 10;
+    }
 }
 
 /**
@@ -105,24 +109,29 @@ bool willFrogDie(Frog *theFrog, Map *theMap)
  */
 void moveFrog(Frog *theFrog, Direction dir)
 {
+    // if (dir <= 3 && dir >= 0)
+    // {
+    //     theFrog->canMove = false;
+    // }
     switch (dir)
     {
     case Up:
-        if (theFrog->lane <= 19 && theFrog->lane > 0)
+        if (theFrog->lane <= MAP_SIZE - 1 && theFrog->lane > 0)
             theFrog->lane -= 1;
-        //printf("here!\n");
         break;
+
     case Down:
-        if (theFrog->lane > 0 && theFrog->lane < 19)
+        if (theFrog->lane > 0 && theFrog->lane < MAP_SIZE - 1)
             theFrog->lane += 1;
         break;
+
     case Left:
         if (theFrog->x - CELL_PIXEL >= GAME_SCREEN_LEFT)
             theFrog->x -= CELL_PIXEL;
         break;
 
     case Right:
-        if (theFrog->x + CELL_PIXEL <= GAME_SCREEN_RIGHT)
+        if (theFrog->x + CELL_PIXEL * 2 <= GAME_SCREEN_RIGHT)
             theFrog->x += CELL_PIXEL;
         break;
 
@@ -156,7 +165,7 @@ void FrogMoveWithObject(Frog *theFrog, Map *theMap)
 
 void FrogOutSideScreen(Frog *theFrog)
 {
-    if (theFrog->x + CELL_PIXEL < GAME_SCREEN_LEFT || theFrog->x > GAME_SCREEN_RIGHT || theFrog->lane < 0 || theFrog->lane > 19)
+    if (theFrog->x + CELL_PIXEL < GAME_SCREEN_LEFT || theFrog->x > GAME_SCREEN_RIGHT || theFrog->lane < 0 || theFrog->lane > 22)
     {
         reviveFrog(theFrog);
     }

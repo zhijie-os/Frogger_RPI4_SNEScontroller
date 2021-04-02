@@ -292,7 +292,10 @@ int main()
     // shared.turn = 1;
     while (1)
     {
-
+        // if(!theGame.theFrog->canMove&&counter >=10){
+        //     theGame.theFrog->canMove =true;
+        //     counter=0;
+        // }
         play();
         if(theGame.theFrog->lane<=16){
             render(0);
@@ -300,6 +303,8 @@ int main()
         else{
             render(5);
         }
+        usleep(50000);
+        counter++;
     }
     endSNES();
 }

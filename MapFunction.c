@@ -16,10 +16,10 @@
 
 // The channel speed for each lane
 int CHANNEL_SPEED[MAP_SIZE] = {0,
-                               4, 5, -4, 6, -5, 0,
-                               7, -6, 4, -3, 0,
-                               -5, 4, -3, 5, 0,
-                               -2, 4, -3, 5, -4, 0};
+                               5, 7, -6, 6, -5, 0,
+                               8, -7, 6, -7, 0,
+                               -5, 6, -7, 7, 0,
+                               -6, 7, -7, 6, -5, 0};
 
 // The initial map that in a human readable table, and the initMap function would base on this table to initialize the map
 char *INIT_MAP[MAP_SIZE] = {
@@ -29,7 +29,7 @@ char *INIT_MAP[MAP_SIZE] = {
     "XXXXX..XX..XX..XXXXXXXXXXXXXXXXX",
 
     // Channel with logs and turtles
-    "XX...XX...XXXX...XXXX...XXXX....",//1
+    "XX...XX....XXXX...XXXX...XXXX....",//1
     ".XX...XXX...XX....XXX......XXX..",
     "XX...XXXX.....XXX.....XXXX....XX",
     "..XXX....XX..XX....XX...XXXX...X",
@@ -38,16 +38,16 @@ char *INIT_MAP[MAP_SIZE] = {
 
     // Venoms
     "XX...X.........XX...X.....XX....",//7
-    "..XX......XXX....XX.....XXX...XX",
-    "..X..X..X..X..X....X..X..X.....X",
+    "..XX..XX........XX...XX...XX....",
+    "..X..X..X.....X.......X..X.....X",
     "X.....X.....X.....X.......X.....",
     "................................",//11
 
     // Magic Balls
     "X....X....X.....X....X....X....X",//12
     "..XXXX...........XXXX...........",
-    "XX...XX...XX...XX.....XX........",
-    "....XXX....XXX......XXX....XXX..",
+    "XX...XX...XX.....XX.............",
+    "....XXX..........XXX.......XXX..",
     "................................",//16
 
     // Road which has cars on it

@@ -52,6 +52,7 @@ typedef struct
     int lane;
     int score;
     int timeLeft;
+    int minimumLaneArrived;
     bool winFlag;
     bool loseFlag;
     bool canMove;
@@ -73,8 +74,6 @@ typedef struct
 {
     Lane lanes[MAP_SIZE];
 } Map;
-
-
 
 typedef struct{
 	char *fptr;		// framebuffer pointer
