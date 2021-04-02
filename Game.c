@@ -15,12 +15,8 @@
 #include <time.h>
 #include <pthread.h>
 
-struct shared
-{
-    GameState *theGame;
-    int turn;
-} shared;
 
+int turn;
 GameState theGame;
 
 /**
@@ -71,25 +67,31 @@ void render(int lower)
 
 void *playThreadFunction(void *infor)
 {
-    while (shared.turn != 1)
-        ;
-    play();
-    shared.turn = 2;
+    while (!theGame.theFrog->winFlag && !theGame.theFrog->loseFlag)
+    {
+        while (turn != 1)
+            ;
+        play();
+        turn = 2;
+    }
 }
 
 void *renderThreadFunction(void *infor)
 {
-    while (shared.turn != 2)
-        ;
-    if (theGame.theFrog->lane <= 11)
+    while (!theGame.theFrog->winFlag && !theGame.theFrog->loseFlag)
     {
-        render(0);
+        while (turn != 2)
+            ;
+        if (theGame.theFrog->lane <= 11)
+        {
+            render(0);
+        }
+        else
+        {
+            render(5);
+        }
+        turn = 0;
     }
-    else
-    {
-        render(5);
-    }
-    shared.turn = 0;
 }
 
 /**
@@ -101,21 +103,25 @@ int main()
 {
     initGame();
     time_t start = time(0);
-    shared.turn = 0;
+    time_t end;
+    turn = 0;
     // init 2 thread ids
     pthread_t playThread;
     pthread_t renderThread;
-    pthread_create(&playThread, NULL, play, NULL);
-    pthread_create(&renderThread, NULL, play, NULL);
+    pthread_create(&playThread, NULL, playThreadFunction, NULL);
+    pthread_create(&renderThread, NULL, renderThreadFunction, NULL);
 
     while (!theGame.theFrog->winFlag && !theGame.theFrog->loseFlag)
     {
-        while (shared.turn != 0)
+        while (turn != 0)
             ;
-        theGame.theFrog->timeLeft -= (time(0) - start);
-        shared.turn = 1;
-        //usleep(10000);
+        end = time(0);
+        theGame.theFrog->timeLeft = theGame.theFrog->timeLeft-(end- start);
+        start = end;
+        turn = 1;
     }
+    //pthread_cancel(playThread);
+    //pthread_cancel(renderThread);
 
     endSNES();
 }

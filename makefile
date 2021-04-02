@@ -1,5 +1,5 @@
 frogger:SNES.o Seg7Simulator.o Game.o Images.o MapFunction.o NumberRender.o FrogFunction.o FrameBuffer.o CharRender.o Render.o
-	gcc SNES.o Seg7Simulator.o Game.o Images.o MapFunction.o NumberRender.o FrogFunction.o FrameBuffer.o CharRender.o Render.o -g -o frogger
+	gcc SNES.o Seg7Simulator.o Game.o Images.o MapFunction.o NumberRender.o FrogFunction.o FrameBuffer.o CharRender.o Render.o -pthread -g -o frogger
 SNES.o:SNES.c
 	gcc -g -c SNES.c
 

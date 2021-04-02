@@ -66,7 +66,7 @@ void updateFrog(Frog *theFrog, Map *theMap, Direction dir)
             reviveFrog(theFrog);
         }
     }
-    if(theFrog->timeLeft<=0 || theFrog->moveLeft){
+    if(theFrog->timeLeft<=0 || theFrog->moveLeft<=0){
         theFrog->loseFlag = true;
     }
     FrogOutSideScreen(theFrog);
@@ -112,30 +112,30 @@ bool willFrogDie(Frog *theFrog, Map *theMap)
  */
 void moveFrog(Frog *theFrog, Direction dir)
 {
-    if (dir <= 3 && dir >= 0)
-    {
-        theFrog->moveLeft -= 1;
-    }
     switch (dir)
     {
     case Up:
         if (theFrog->lane <= MAP_SIZE - 1 && theFrog->lane > 0)
             theFrog->lane -= 1;
+            theFrog->moveLeft -= 1;
         break;
 
     case Down:
         if (theFrog->lane > 0 && theFrog->lane < MAP_SIZE - 1)
             theFrog->lane += 1;
+            theFrog->moveLeft -= 1;
         break;
 
     case Left:
         if (theFrog->x - CELL_PIXEL >= GAME_SCREEN_LEFT)
             theFrog->x -= CELL_PIXEL;
+            theFrog->moveLeft -= 1;
         break;
 
     case Right:
         if (theFrog->x + CELL_PIXEL * 2 <= GAME_SCREEN_RIGHT)
             theFrog->x += CELL_PIXEL;
+            theFrog->moveLeft -= 1;
         break;
 
     default:

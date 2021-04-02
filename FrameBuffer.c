@@ -68,7 +68,7 @@ FrameBuffer *initFbInfo(void)
     result->bits = (int)vinfo.bits_per_pixel;
     result->lineLength = (int)finfo.line_length;
     result->screenSize = (float)screensize;
-    printf("%c,%d,%d,%d,%d,%f\n here",result->fptr,result->xOff,result->yOff,result->bits,result->lineLength,result->screenSize);
+    printf("%c,%d,%d,%d,%d,%f\n",result->fptr,result->xOff,result->yOff,result->bits,result->lineLength,result->screenSize);
     
     return result;
 }
