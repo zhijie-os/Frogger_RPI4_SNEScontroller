@@ -47,43 +47,56 @@ void renderMap(int lower)
                     currentImage = theGame.images->castleLandImage;
                     break;
 
-                case 1:
+                case 7:
+                    currentImage = theGame.images->captinImage;
+                    break;
+
+                case 8:
+                    currentImage = theGame.images->soulImage;
+                    break;
+
+                case 9:
                     currentImage = theGame.images->venomOneImage;
                     break;
 
-                case 2:
+                case 10:
                     currentImage = theGame.images->venomTwoImage;
                     break;
 
-                case 4:
+
+                case 12:
+                    currentImage = theGame.images->greenBallImage;
+                    break;
+
+                case 13:
                     currentImage = theGame.images->lightBallImage;
                     break;
 
-                case 5:
+                case 14:
                     currentImage = theGame.images->iceBallImage;
                     break;
 
-                case 6:
+                case 15:
                     currentImage = theGame.images->fireBallImage;
                     break;
 
-                case 14:
+                case 17:
                     currentImage = theGame.images->carFiveImage;
                     break;
 
-                case 15:
+                case 18:
                     currentImage = theGame.images->carFourImage;
                     break;
 
-                case 16:
+                case 19:
                     currentImage = theGame.images->carThreeImage;
                     break;
 
-                case 17:
+                case 20:
                     currentImage = theGame.images->carTwoImage;
                     break;
 
-                case 18:
+                case 21:
                     currentImage = theGame.images->carOneImage;
                     break;
 
@@ -94,33 +107,33 @@ void renderMap(int lower)
             }
             else
             {
-                if (i >= 8 && i <= 12)
+                if (i >= 1 && i <= 6)
                 {
                     switch (i)
                     {
-                    case 8:
+                    case 1:
                         currentImage = theGame.images->logImage;
                         break;
-                    case 9:
+                    case 2:
                         currentImage = theGame.images->logImage;
                         break;
 
-                    case 10:
+                    case 3:
                         currentImage = theGame.images->turtleImage;
                         break;
 
-                    case 11:
+                    case 4:
                         currentImage = theGame.images->logImage;
                         break;
 
-                    case 12:
+                    case 5:
                         currentImage = theGame.images->turtleImage;
                         break;
                     default:
                         break;
                     }
                 }
-                if (i == 0 || i == 3 || i == 7 || i == 13 || i == 19)
+                if (i == 0 || i == 6 || i ==11 || i == 16 || i == 22)
                 {
                     currentImage = theGame.images->saveAreaImage;
                 }

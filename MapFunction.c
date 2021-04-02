@@ -8,7 +8,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-
 /**
  * @author Zhijie Xia
  * @date Feb/01/2021
@@ -16,10 +15,11 @@
  */
 
 // The channel speed for each lane
-int CHANNEL_SPEED[MAP_SIZE] = {0, 7, -6, 0,
-                         4, -3, 5, 0,
-                         4, 5, -4, 6, -5, 0,
-                         -2, 4, -3, 5, -4, 0};
+int CHANNEL_SPEED[MAP_SIZE] = {0,
+                               4, 5, -4, 6, -5, 0,
+                               7, -6, 4, -3, 0,
+                               -5, 4, -3, 5, 0,
+                               -2, 4, -3, 5, -4, 0};
 
 // The initial map that in a human readable table, and the initMap function would base on this table to initialize the map
 char *INIT_MAP[MAP_SIZE] = {
@@ -29,36 +29,34 @@ char *INIT_MAP[MAP_SIZE] = {
     "XXXXX..XX..XX..XXXXXXXXXXXXXXXXX",
 
     // Channel with logs and turtles
-    "XX...XX...XXXX...XXXX...XXXX....",
+    "XX...XX...XXXX...XXXX...XXXX....",//1
     ".XX...XXX...XX....XXX......XXX..",
     "XX...XXXX.....XXX.....XXXX....XX",
     "..XXX....XX..XX....XX...XXXX...X",
     "XX...XX...XX...XX...XX...XX...XX",
-    "................................",
+    "................................",//6
 
     // Venoms
-    "XX...X.........XX...X.....XX...."
-    "..XX......XXX....XX.....XXX...XX"
+    "XX...X.........XX...X.....XX....",//7
+    "..XX......XXX....XX.....XXX...XX",
     "..X..X..X..X..X....X..X..X.....X",
     "X.....X.....X.....X.......X.....",
-    "................................",
+    "................................",//11
 
     // Magic Balls
-    "X....X....X.....X....X....X....X" 
+    "X....X....X.....X....X....X....X",//12
     "..XXXX...........XXXX...........",
     "XX...XX...XX...XX.....XX........",
     "....XXX....XXX......XXX....XXX..",
-    "................................",
-
-
+    "................................",//16
 
     // Road which has cars on it
-    ".......................XX.......",
+    ".......................XX.......",//17
     "...X..............X.............",
     "X.......X.......X........X......",
     "...X.....X.....X.....X.....X....",
     "X..........X........X..........X",
-    "................................"
+    "................................"//22
 
 };
 
@@ -125,14 +123,13 @@ void updateMap(Map *theMap, int upper, int lower)
 void cellKeepInRange(Cell *outRange)
 {
     // if the cell is outRanged from left, shift a BOUNDARY_WIDTH right
-    if ((outRange->x+CELL_PIXEL) < 0)
+    if ((outRange->x + CELL_PIXEL) < 0)
     {
         outRange->x += BOUNDARY_WIDTH;
     }
     // if the cell is outRanged from right, shift a BOUNDARY_WIDTH left
-    else if ((outRange->x+CELL_PIXEL)> BOUNDARY_WIDTH)
+    else if ((outRange->x + CELL_PIXEL) > BOUNDARY_WIDTH)
     {
         outRange->x -= BOUNDARY_WIDTH;
     }
 }
-
