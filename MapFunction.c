@@ -16,43 +16,49 @@
  */
 
 // The channel speed for each lane
-int CHANNEL_SPEED[20] = {0, 7, -6, 0,
+int CHANNEL_SPEED[MAP_SIZE] = {0, 7, -6, 0,
                          4, -3, 5, 0,
                          4, 5, -4, 6, -5, 0,
                          -2, 4, -3, 5, -4, 0};
 
 // The initial map that in a human readable table, and the initMap function would base on this table to initialize the map
-char *INIT_MAP[20] = {
+char *INIT_MAP[MAP_SIZE] = {
     // a '.' is a SaveFrog object, a 'x' is a KillFrog object
 
     //Castle
-    "XXXXX..XX..XX..XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    // Unimplemented
-    "..X..X..X..X..X...........X..X..X..X..X.........",
-    "X.....X.....X.....X.......X........X...........X",
-    "................................................",
-
-    // Unimplemented
-    "..XXXX...........XXXX............XXXX...........",
-    "XX...XX...XX...XX.....XX........XX...XX...XX...X",
-    "....XXX....XXX......XXX....XXX......XXX......XXX",
-    "................................................",
+    "XXXXX..XX..XX..XXXXXXXXXXXXXXXXX",
 
     // Channel with logs and turtles
-    "XXXXXX...XXXX...XXXXX...XXXX....XXXXXX..XXXXX...",
-    ".XXX..XXX...XX....XXX......XXXX....XX....XXX....",
-    "XX...XXXX.....XXX.....XXXX....XX....XX....XXXX..",
-    "..XXXXXX..XX..XXXXXXX...XXXX...XXX....XXXXXX....",
-    "XX...XX...XX...XX...XX...XX...XX...XX...XX...XX.",
-    "................................................",
+    "XX...XX...XXXX...XXXX...XXXX....",
+    ".XX...XXX...XX....XXX......XXX..",
+    "XX...XXXX.....XXX.....XXXX....XX",
+    "..XXX....XX..XX....XX...XXXX...X",
+    "XX...XX...XX...XX...XX...XX...XX",
+    "................................",
+
+    // Venoms
+    "XX...X.........XX...X.....XX...."
+    "..XX......XXX....XX.....XXX...XX"
+    "..X..X..X..X..X....X..X..X.....X",
+    "X.....X.....X.....X.......X.....",
+    "................................",
+
+    // Magic Balls
+    "X....X....X.....X....X....X....X" 
+    "..XXXX...........XXXX...........",
+    "XX...XX...XX...XX.....XX........",
+    "....XXX....XXX......XXX....XXX..",
+    "................................",
+
+
 
     // Road which has cars on it
-    ".......................XX.......................",
-    "...X..............X..............X..............",
-    "X.......X.......X........X........X......X......",
-    "...X.....X.....X.....X.....X.....X.....X.....X..",
-    "X..........X........X..........X..........X.....",
-    "................................................"
+    ".......................XX.......",
+    "...X..............X.............",
+    "X.......X.......X........X......",
+    "...X.....X.....X.....X.....X....",
+    "X..........X........X..........X",
+    "................................"
 
 };
 
@@ -124,7 +130,7 @@ void cellKeepInRange(Cell *outRange)
         outRange->x += BOUNDARY_WIDTH;
     }
     // if the cell is outRanged from right, shift a BOUNDARY_WIDTH left
-    else if (outRange->x > BOUNDARY_WIDTH)
+    else if ((outRange->x+CELL_PIXEL)> BOUNDARY_WIDTH)
     {
         outRange->x -= BOUNDARY_WIDTH;
     }

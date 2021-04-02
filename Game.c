@@ -22,16 +22,23 @@ GameState theGame;
  * @note   
  * @retval None
  */
-void renderMap()
+void renderMap(int lower)
 {
+    Cell current;
+    Image *currentImage;
     // outer loop: for each lane/channel
-    for (int i = 0; i < MAP_SIZE; i++)
+    for (int i = lower; i < 16; i++)
     {
         // inner loop: for each cell in the lane/channel
         for (int j = 0; j < LANE_SIZE; j++)
         {
-            Cell current = theGame.theMap->lanes[i].cells[j];
-            Image *currentImage;
+            current = theGame.theMap->lanes[i].cells[j];
+            currentImage = NULL;
+            if (current.x > BOUNDARY_WIDTH)
+            {
+                continue;
+            }
+
             if (current.fatal == KillFrog)
             {
                 switch (i)
@@ -46,10 +53,6 @@ void renderMap()
 
                 case 2:
                     currentImage = theGame.images->venomTwoImage;
-                    break;
-
-                case 3:
-                    // should never be in here.
                     break;
 
                 case 4:
@@ -77,34 +80,20 @@ void renderMap()
                     break;
 
                 case 17:
-                   currentImage = theGame.images->carTwoImage;
+                    currentImage = theGame.images->carTwoImage;
                     break;
 
                 case 18:
                     currentImage = theGame.images->carOneImage;
                     break;
 
-                case 19:
-                    // should never be in here
-                    break;
-
                 default:
                     currentImage = theGame.images->waterImage;
                     break;
                 }
-                for (int o = 0; o < CELL_PIXEL; o++)
-                {
-                    for (int p = 0; p < CELL_PIXEL; p++)
-                    {
-                        theGame.canvas[(i * CELL_PIXEL + o) * 1920 + current.x + p] =
-                            currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2] << 8 |
-                            currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2 + 1];
-                    }
-                }
             }
             else
             {
-
                 if (i >= 8 && i <= 12)
                 {
                     switch (i)
@@ -130,28 +119,27 @@ void renderMap()
                     default:
                         break;
                     }
-
-                    for (int o = 0; o < CELL_PIXEL; o++)
-                    {
-                        for (int p = 0; p < CELL_PIXEL; p++)
-                        {
-                            theGame.canvas[(i * CELL_PIXEL + o) * 1920 + current.x + p] =
-                                currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2] << 8 |
-                                currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2 + 1];
-                        }
-                    }
                 }
                 if (i == 0 || i == 3 || i == 7 || i == 13 || i == 19)
                 {
                     currentImage = theGame.images->saveAreaImage;
-                    for (int o = 0; o < CELL_PIXEL; o++)
+                }
+            }
+            if (currentImage != NULL)
+            {
+                for (int o = 0; o < CELL_PIXEL; o++)
+                {
+                    for (int p = 0; p < CELL_PIXEL; p++)
                     {
-                        for (int p = 0; p < CELL_PIXEL; p++)
+                        if (i - lower >= 0)
                         {
-                            theGame.canvas[(i * CELL_PIXEL + o) * 1920 + current.x + p] =
+                            theGame.canvas[((i - lower) * CELL_PIXEL + o) * BOUNDARY_WIDTH + current.x + p] =
                                 currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2] << 8 |
                                 currentImage->image_pixels[o * CELL_PIXEL * 2 + p * 2 + 1];
                         }
+                        // else{
+                        //     break;
+                        // }
                     }
                 }
             }
@@ -164,7 +152,7 @@ void renderMap()
  * @note   
  * @retval None
  */
-void renderFrog()
+void renderFrog(int lower)
 {
 
     for (int i = 0; i < CELL_PIXEL; i++)
@@ -172,8 +160,8 @@ void renderFrog()
         for (int j = 0; j < CELL_PIXEL; j++)
         {
             //
-            theGame.canvas[(theGame.theFrog->lane * CELL_PIXEL + i) * 1920 + theGame.theFrog->x + j] = 0;
-            theGame.canvas[(theGame.theFrog->lane * CELL_PIXEL + i) * 1920 + theGame.theFrog->x + j] =
+            theGame.canvas[(theGame.theFrog->lane * CELL_PIXEL + i) * BOUNDARY_WIDTH + theGame.theFrog->x + j] = 0;
+            theGame.canvas[(theGame.theFrog->lane * CELL_PIXEL + i) * BOUNDARY_WIDTH + theGame.theFrog->x + j] =
                 (theGame.images->frogImage->image_pixels[i * CELL_PIXEL * 2 + j * 2] << 8) |
                 (theGame.images->frogImage->image_pixels[i * CELL_PIXEL * 2 + j * 2 + 1]);
         }
@@ -228,13 +216,8 @@ void renderPause()
  */
 void renderScreen()
 {
-    for (int i = 0; i < SCREEN_HEIGHT; i++)
-    {
-        for (int j = 0; j < SCREEN_WIDTH; j++)
-        {
-            theGame.canvas[SCREEN_WIDTH * i + j] = 0x0000;
-        }
-    }
+    for (int i = 0; i < 1280 * 720; i++)
+        theGame.canvas[i] = 0x0000;
 }
 
 /**
@@ -245,8 +228,8 @@ void renderScreen()
 void render()
 {
     renderScreen();
-    renderMap();
-    renderFrog();
+    renderMap(0);
+    //renderFrog();
     //renderTime();
     drawPixel(&theGame);
 }
@@ -297,19 +280,9 @@ int main()
     // shared.turn = 1;
     while (1)
     {
-        if(counter ==0){
-            theGame.theFrog->canMove =true;
-        }
-        else if(counter == 500){
-            counter = 0;
-        }
-        else{
-            theGame.theFrog->canMove =false;
-        }
-        counter++;
+
         play();
         render();
-
     }
     endSNES();
 }

@@ -1,18 +1,18 @@
 #ifndef CONSTDEF_H
 #define CONSTDEF_H
 
-#define LANE_SIZE 48
-#define MAP_SIZE 20
+#define LANE_SIZE 32
+#define MAP_SIZE 23
 
 #define CELL_PIXEL 40
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 729
 
 #define GAME_SCREEN_LEFT 0
 #define GAME_SCREEN_RIGHT 1280
 
-#define BOUNDARY_WIDTH 1920
-#define BOUNDARY_HEIGTH 1080
+#define BOUNDARY_WIDTH 1280
+#define BOUNDARY_HEIGTH 720
 
 // the start of gpio physical address in BCM2711
 #define GPIO_BASE 0xFE200000

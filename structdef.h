@@ -116,6 +116,13 @@ typedef struct
     Image *turtleImage;
     Image *saveAreaImage;
     Image *waterImage;
+    Image *lifePackageImage;
+    Image *scorePackageImage;
+    Image *movementPackageImage;
+    Image *timePackageImage;
+    Image *captinImage;
+    Image *soulImage;
+    Image *greenBallImage;
 }Images;
 
 
@@ -123,7 +130,7 @@ typedef struct{
     Frog *theFrog;
     Map *theMap;
     time_t startTime;
-    short canvas[1920*1080];
+    short canvas[1280*720];
     FrameBuffer *framebuffer;
     Images *images;
 }GameState;

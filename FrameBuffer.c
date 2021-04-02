@@ -78,5 +78,5 @@ FrameBuffer *initFbInfo(void)
 /* Draw a pixel */
 void drawPixel(GameState *theGame)
 {
-    memcpy(theGame->framebuffer->fptr, theGame->canvas, 1920*1080*2);
+    memcpy(theGame->framebuffer->fptr, theGame->canvas, 1280*720*2);
 }
