@@ -7,6 +7,7 @@
 #include "NumberRender.h"
 #include "CharRender.h"
 #include "Render.h"
+#include "ValuePackage.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,13 +30,18 @@ void initGame()
     theGame.theFrog = malloc(sizeof(Frog));
     theGame.theMap = malloc(sizeof(Map));
     theGame.framebuffer = malloc(sizeof(FrameBuffer));
+    theGame.package = malloc(sizeof(Package));
     // theGame.canvas = malloc(1280 * 720 * 4);
     initMap(theGame.theMap);
     initFrog(theGame.theFrog);
     initSNES();
+    theGame.package->lastUpdate = 0;
+    theGame.startTime = time(0);
     theGame.framebuffer = initFbInfo();
     theGame.images = initImages();
 }
+
+
 
 /**
  * @brief  player make a move
@@ -48,6 +54,7 @@ void play()
     key = getAKey();
     updateMap(theGame.theMap, 22, 0);
     updateFrog(theGame.theFrog, theGame.theMap, key);
+    updatePackage(&theGame);
 }
 
 /**
@@ -59,8 +66,12 @@ void render(int lower)
 {
     renderScreen(&theGame);
     renderMap(&theGame);
+    renderValuePackage(&theGame);
     renderFrog(&theGame);
     memcpy(theGame.stage, theGame.canvas + lower * BOUNDARY_WIDTH * CELL_PIXEL, BOUNDARY_WIDTH * BOUNDARY_HEIGTH * 2);
+    for(int i;i<1280*40;i++){
+        theGame.infor[i]=0xFFFF;
+    }
     //renderTime();
     drawPixel(&theGame);
 }
@@ -88,11 +99,13 @@ void *renderThreadFunction(void *infor)
         }
         else
         {
-            render(5);
+            render(6);
         }
         turn = 0;
     }
 }
+
+
 
 /**
  * @brief  main() that actually drives the game
@@ -120,8 +133,6 @@ int main()
         start = end;
         turn = 1;
     }
-    //pthread_cancel(playThread);
-    //pthread_cancel(renderThread);
 
     endSNES();
 }

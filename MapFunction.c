@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 
 /**
  * @author Zhijie Xia
@@ -114,6 +115,8 @@ void updateMap(Map *theMap, int upper, int lower)
     }
 }
 
+
+
 /**
  * @brief  Keep a cell inside the valid range
  * @note   
@@ -133,3 +136,5 @@ void cellKeepInRange(Cell *outRange)
         outRange->x -= BOUNDARY_WIDTH;
     }
 }
+
+

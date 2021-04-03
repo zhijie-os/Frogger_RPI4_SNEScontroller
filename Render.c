@@ -165,6 +165,45 @@ void renderFrog(GameState *theGame)
     }
 }
 
+void renderValuePackage(GameState *theGame)
+{
+    for (int k = 0; k < 4; k++)
+    {
+        if (theGame->package->on[k] == 1)
+        {
+            Image *currentImage;
+            switch (k)
+            {
+            case 0:
+                currentImage=theGame->images->lifePackageImage;
+                break;
+            case 1:
+                currentImage=theGame->images->scorePackageImage;
+                break;
+            case 2:
+                currentImage=theGame->images->movementPackageImage;
+                break;
+            case 3:
+                currentImage=theGame->images->timePackageImage;
+                break;
+
+            default:
+                break;
+            }
+            for (int i = 0; i < CELL_PIXEL; i++)
+            {
+                for (int j = 0; j < CELL_PIXEL; j++)
+                {
+                    theGame->canvas[(theGame->package->lane[k] * CELL_PIXEL + i) * BOUNDARY_WIDTH + theGame->package->packages[k].x + j] = 0;
+                    theGame->canvas[(theGame->package->lane[k] * CELL_PIXEL + i) * BOUNDARY_WIDTH + theGame->package->packages[k].x + j] =
+                        (currentImage->image_pixels[i * CELL_PIXEL * 2 + j * 2] << 8) |
+                        (currentImage->image_pixels[i * CELL_PIXEL * 2 + j * 2 + 1]);
+                }
+            }
+        }
+    }
+}
+
 /**
  * @brief  Render the time stamp on the top right corner of the canvas
  * @note
@@ -216,4 +255,3 @@ void renderScreen(GameState *theGame)
     for (int i = 0; i < BOUNDARY_WIDTH * 920; i++)
         theGame->canvas[i] = 0x0000;
 }
-

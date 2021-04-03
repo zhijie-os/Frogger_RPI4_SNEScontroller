@@ -13,5 +13,6 @@ void renderPause(GameState *theGame);
 
 void renderScreen(GameState *theGame);
 
+void renderValuePackage(GameState *theGame);
 
 #endif

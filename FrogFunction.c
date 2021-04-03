@@ -16,7 +16,7 @@ void initFrog(Frog *theFrog)
     theFrog->life = 4;
     theFrog->canMove = true;
     theFrog->score = 0;
-    theFrog->timeLeft = 60;
+    theFrog->timeLeft = 90;
     theFrog->minimumLaneArrived = 22;
     theFrog->loseFlag = false;
     theFrog->winFlag = false;

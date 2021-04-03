@@ -123,15 +123,23 @@ typedef struct
     Image *greenBallImage;
 }Images;
 
+typedef struct{
+    Cell packages[4];
+    int on[4];
+    int lane[4];
+    int lastUpdate;
+}Package;
 
 typedef struct{
     Frog *theFrog;
     Map *theMap;
     time_t startTime;
-    short stage[1280*720];
+    short stage[1280*680];
     short canvas[1280*920];
+    short infor[1280*40];
     FrameBuffer *framebuffer;
     Images *images;
+    Package *package;
 }GameState;
 
 typedef struct {
