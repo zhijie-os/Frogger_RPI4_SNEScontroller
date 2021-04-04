@@ -41,6 +41,10 @@ void initGame()
     initFrog(theGame.theFrog);
     theGame.package->lastUpdate = 0;
     theGame.startTime = time(0);
+    start = time(0);
+    for(int i=0;i<4;i++){
+        theGame.package->on[i]=0;
+    }
 }
 
 void mainMenuHandler()
@@ -165,10 +169,18 @@ void WinOrLose(bool win)
     {
         renderLose(&theGame);
     }
+    drawPixel(&theGame);
 
-    while(!pressed());
+    usleep(400000);
 
-    mainMenu = true;
+    Read_SNES();
+    while(!pressed()){
+        Read_SNES();
+    };
+
+    usleep(400000);
+    mainMenuBool = true;
+    mainMenuHandler();
 }
 
 void *playThreadFunction(void *infor)
@@ -222,7 +234,6 @@ void allocateGame()
 void newGame()
 {
     initGame();
-    start = time(0);
     turn = 0;
     // init 2 thread ids
     pthread_create(&playThread, NULL, playThreadFunction, NULL);

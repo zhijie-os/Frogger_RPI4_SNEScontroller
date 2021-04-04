@@ -1,10 +1,10 @@
 #include "FrogFunction.h"
 
-int Map_SPEED[MAP_SIZE] = {0,
-                           5, 7, -6, 6, -5, 0,
-                           8, -7, 6, -7, 0,
-                           -5, 6, -7, 7, 0,
-                           -6, 7, -7, 6, -5, 0};
+int Map_SPEED[MAP_SIZE] =  {0,
+                               2, 3, -2, 3, -3, 0,
+                               3, -3, 2, -4, 0,
+                               -2, 3, -3, 3, 0,
+                               -2, 3, -3, 2, -4, 0};
 /**
  * @brief  Initialize the Frog
  * @note   
@@ -73,6 +73,9 @@ void updateFrog(Frog *theFrog, Map *theMap, Direction dir)
     if (theFrog->lane < theFrog->minimumLaneArrived)
     {
         theFrog->score = theFrog->score + 10;
+    }
+    if(theFrog->lane==0){
+        theFrog->winFlag = true;
     }
 }
 

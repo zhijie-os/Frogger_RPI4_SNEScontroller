@@ -137,6 +137,7 @@ void Read_SNES()
  */
 bool pressed()
 {
+    Direction key = getAKey();
     for (int i = 0; i < 16; i++)
     {
         if (((SNES >> i) & 1))
