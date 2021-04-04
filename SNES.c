@@ -15,12 +15,16 @@
 #include <stdbool.h>
 #include "SNES.h"
 #include "structdef.h"
+#include <sys/time.h>
+#include <math.h>
 // pointers for mmap
 int mem_fd;
 void *gpio_map;
 
 // store SNES return values in a registers, which is represented as a INT type
 int SNES = 0;
+struct timeval timeBegin,timeEnd,timeDiff;
+
 
 // volatile to prevent compile to optimize
 volatile static unsigned *gpio;
@@ -253,15 +257,30 @@ void initSNES()
     *(gpio + 7) = 0;
     *(gpio + 10) = 0;
     init_GPIO();
+    gettimeofday(&timeBegin,NULL);
 };
 
 Direction getAKey()
 {   
+    gettimeofday(&timeEnd,NULL);
+    timersub(&timeEnd,&timeBegin,&timeDiff);
+    if(timeDiff.tv_usec<130000){
+        return NoDir;
+    }
+    gettimeofday(&timeBegin,NULL);
     SNES=0;
     Read_SNES();
     if (pressed())
     {
-        if (SNES >> 4 & 1)
+        if (SNES >> 8 & 1)
+        {
+            return A;
+        }
+        else if (SNES >> 3 & 1)
+        {
+            return Start;
+        }
+        else if (SNES >> 4 & 1)
         {
             return Up;
         }
@@ -277,6 +296,7 @@ Direction getAKey()
         {
             return Right;
         }
+        
     }
     return NoDir;
 };

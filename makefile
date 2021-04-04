@@ -1,5 +1,5 @@
-Frogger:ValuePackage.o SNES.o Seg7Simulator.o Game.o Images.o MapFunction.o NumberRender.o FrogFunction.o FrameBuffer.o CharRender.o Render.o 
-	gcc ValuePackage.o SNES.o Seg7Simulator.o Game.o Images.o MapFunction.o NumberRender.o FrogFunction.o FrameBuffer.o CharRender.o Render.o  -pthread -g -o Frogger
+Frogger:Menus.o ValuePackage.o SNES.o Seg7Simulator.o Game.o Images.o MapFunction.o NumberRender.o FrogFunction.o FrameBuffer.o CharRender.o Render.o 
+	gcc Menus.o ValuePackage.o SNES.o Seg7Simulator.o Game.o Images.o MapFunction.o NumberRender.o FrogFunction.o FrameBuffer.o CharRender.o Render.o  -pthread -g -o Frogger
 
 SNES.o:SNES.c
 	gcc -g -c SNES.c
@@ -34,7 +34,8 @@ FrameBuffer.o:FrameBuffer.c
 CharRender.o:CharRender.c
 	gcc -g -c CharRender.c
 
-
+Menus.o: Menus.c
+	gcc -g -c Menus.c
 
 clean:
 	rm *.o

@@ -6,27 +6,7 @@
 #include <stdbool.h>
 #include <time.h>
 
-typedef enum
-{
-    CarOne,
-    CarTwo,
-    CarThree,
-    CarFour,
-    CarFive,
-    FireBall,
-    IceBall,
-    LightBall,
-    VenomOne,
-    VenomTwo,
-    Turtle,
-    Log,
-    Water,
-    Fly,
-    Bug,
-    Castle,
-    CastleLand,
-    Road
-} Object;
+
 
 typedef enum
 {
@@ -40,6 +20,8 @@ typedef enum
     Down,
     Left,
     Right,
+    A,
+    Start,
     NoDir
 } Direction;
 
@@ -123,6 +105,7 @@ typedef struct
     Image *greenBallImage;
 }Images;
 
+
 typedef struct{
     Cell packages[4];
     int on[4];
@@ -134,7 +117,7 @@ typedef struct{
     Frog *theFrog;
     Map *theMap;
     time_t startTime;
-    short stage[1280*680];
+    short stage[1280*720];
     short canvas[1280*920];
     short infor[1280*40];
     FrameBuffer *framebuffer;

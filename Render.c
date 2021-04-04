@@ -2,7 +2,9 @@
 #include "Render.h"
 #include "CharRender.h"
 #include "FrameBuffer.h"
+#include "Menus.h"
 #include <string.h>
+
 /**
  * @brief  render the map into canvas
  * @note   
@@ -175,16 +177,16 @@ void renderValuePackage(GameState *theGame)
             switch (k)
             {
             case 0:
-                currentImage=theGame->images->lifePackageImage;
+                currentImage = theGame->images->lifePackageImage;
                 break;
             case 1:
-                currentImage=theGame->images->scorePackageImage;
+                currentImage = theGame->images->scorePackageImage;
                 break;
             case 2:
-                currentImage=theGame->images->movementPackageImage;
+                currentImage = theGame->images->movementPackageImage;
                 break;
             case 3:
-                currentImage=theGame->images->timePackageImage;
+                currentImage = theGame->images->timePackageImage;
                 break;
 
             default:
@@ -222,30 +224,6 @@ void renderTime(GameState *theGame)
 }
 
 /**
- * @brief  Render the pause screen
- * @note
- * @retval None
- */
-void renderPause(GameState *theGame)
-{
-    // for (int i = 0; i < SCREEN_WIDTH; i++)
-    // {
-    //     for (int j = 0; j < SCREEN_HEIGHT; j++)
-    //     {
-    //         // TODO: Render entire screen to a color
-    //     }
-    // }
-
-    // // Get center, render PAUSE
-    // int LETTER_DISPLACEMENT = 50;
-    // CharRender(theGame->canvas, 'P', SCREEN_WIDTH / 2 - LETTER_DISPLACEMENT * 2, SCREEN_HEIGHT / 2);
-    // CharRender(theGame->canvas, 'A', SCREEN_WIDTH / 2 - LETTER_DISPLACEMENT, SCREEN_HEIGHT / 2);
-    // CharRender(theGame->canvas, 'U', SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-    // CharRender(theGame->canvas, 'S', SCREEN_WIDTH / 2 + LETTER_DISPLACEMENT, SCREEN_HEIGHT / 2);
-    // CharRender(theGame->canvas, 'E', SCREEN_WIDTH / 2 + LETTER_DISPLACEMENT * 2, SCREEN_HEIGHT / 2);
-}
-
-/**
  * @brief  render the bottom layer of the canvas
  * @note   
  * @retval None
@@ -254,4 +232,62 @@ void renderScreen(GameState *theGame)
 {
     for (int i = 0; i < BOUNDARY_WIDTH * 920; i++)
         theGame->canvas[i] = 0x0000;
+}
+
+void renderMainMenu(GameState *theGame, int state)
+{
+    if (state == 1)
+    {
+        memcpy(theGame->stage, MainMenuOne, 1280 * 720 * 2);
+    }
+    else
+    {
+        memcpy(theGame->stage, MainMenuTwo, 1280 * 720 * 2);
+    }
+}
+
+void renderPause(GameState *theGame, int state)
+{
+
+    if (state == 1)
+    {
+        for (int i = 0; i < 480; i++)
+        {
+            for (int j = 0; j < 320; j++)
+            {
+                *(theGame->stage + (190 + j) * 1280 + 400 + i) = PauseOne[480 * j + i];
+            }
+        }
+    }
+    else if (state == 2)
+    {
+        for (int i = 0; i < 480; i++)
+        {
+            for (int j = 0; j < 320; j++)
+            {
+                *(theGame->stage + (190 + j) * 1280 + 400 + i) = PauseTwo[480 * j + i];
+            }
+        }
+    }
+}
+
+
+void renderWin(GameState *theGame){
+        for (int i = 0; i < 480; i++)
+        {
+            for (int j = 0; j < 320; j++)
+            {
+                *(theGame->stage + (190 + j) * 1280 + 400 + i) = Win[480 * j + i];
+            }
+        }
+}
+
+void renderLose(GameState *theGame){
+            for (int i = 0; i < 480; i++)
+        {
+            for (int j = 0; j < 320; j++)
+            {
+                *(theGame->stage + (190 + j) * 1280 + 400 + i) = Lose[480 * j + i];
+            }
+        }
 }
