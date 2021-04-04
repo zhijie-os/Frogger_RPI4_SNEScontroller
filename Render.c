@@ -3,6 +3,7 @@
 #include "CharRender.h"
 #include "FrameBuffer.h"
 #include "Menus.h"
+#include "InforBar.h"
 #include <string.h>
 
 /**
@@ -206,6 +207,73 @@ void renderValuePackage(GameState *theGame)
     }
 }
 
+void renderScore(GameState *theGame)
+{
+    int val = theGame->theFrog->score;
+    int digit3 =  val % 10;
+    val = val/10;
+    int digit2 = val % 10;
+    val = val/10;
+    int digit1 = val%10;
+    for (int i = 0; i < 20; i++)
+    {
+        for (int j = 0; j < 40; j++)
+        {
+            *(theGame->infor + j * 1280 + 420 + i) = digits[digit1][j * 20 + i];
+            *(theGame->infor + j * 1280 + 440 + i) = digits[digit2][j * 20 + i];
+            *(theGame->infor + j * 1280 + 460 + i) = digits[digit3][j * 20 + i];
+        }
+    }
+};
+
+void renderMovement(GameState *theGame)
+{
+    int val = theGame->theFrog->moveLeft;
+    int digit3 =  val % 10;
+    val = val/10;
+    int digit2 = val % 10;
+    val = val/10;
+    int digit1 = val%10;
+
+
+    for (int i = 0; i < 20; i++)
+    {
+        for (int j = 0; j < 40; j++)
+        {
+            *(theGame->infor + j * 1280 + 820 + i) = digits[digit1][j * 20 + i];
+            *(theGame->infor + j * 1280 + 840 + i) = digits[digit2][j * 20 + i];
+            *(theGame->infor + j * 1280 + 860 + i) = digits[digit3][j * 20 + i];
+        }
+    }
+};
+
+void renderLive(GameState *theGame)
+{
+    int digit = theGame->theFrog->life;    
+    for (int i = 0; i < 20; i++)
+    {
+        for (int j = 0; j < 40; j++)
+        {
+            *(theGame->infor + j * 1280 + 1180 + i) = digits[digit][j * 20 + i];
+        }
+    }
+};
+
+
+void renderInforBar(GameState *theGame)
+{
+    renderInforTitle(theGame);
+    renderTime(theGame);
+    renderScore(theGame);
+    renderMovement(theGame);
+    renderLive(theGame);
+}
+
+void renderInforTitle(GameState *theGame)
+{
+    memcpy(theGame->infor, inforTitle, 1280 * 40 * 2);
+}
+
 /**
  * @brief  Render the time stamp on the top right corner of the canvas
  * @note
@@ -213,14 +281,16 @@ void renderValuePackage(GameState *theGame)
  */
 void renderTime(GameState *theGame)
 {
-    // int timeNow = theGame->theFrog->timeLeft;
-    // // Render time at (0, 0)
-    // int score = timeNow;
-    // while (score)
-    // {
-    //     numberRender(theGame->canvas, score % 10, 0, 0);
-    //     score /= 10;
-    // }
+    int digit1 = theGame->theFrog->timeLeft / 10;
+    int digit2 = theGame->theFrog->timeLeft % 10;
+    for (int i = 0; i < 20; i++)
+    {
+        for (int j = 0; j < 40; j++)
+        {
+            *(theGame->infor + j * 1280 + 120 + i) = digits[digit1][j * 20 + i];
+            *(theGame->infor + j * 1280 + 140 + i) = digits[digit2][j * 20 + i];
+        }
+    }
 }
 
 /**
@@ -271,23 +341,24 @@ void renderPause(GameState *theGame, int state)
     }
 }
 
-
-void renderWin(GameState *theGame){
-        for (int i = 0; i < 480; i++)
+void renderWin(GameState *theGame)
+{
+    for (int i = 0; i < 480; i++)
+    {
+        for (int j = 0; j < 320; j++)
         {
-            for (int j = 0; j < 320; j++)
-            {
-                *(theGame->stage + (190 + j) * 1280 + 400 + i) = Win[480 * j + i];
-            }
+            *(theGame->stage + (190 + j) * 1280 + 400 + i) = Win[480 * j + i];
         }
+    }
 }
 
-void renderLose(GameState *theGame){
-            for (int i = 0; i < 480; i++)
+void renderLose(GameState *theGame)
+{
+    for (int i = 0; i < 480; i++)
+    {
+        for (int j = 0; j < 320; j++)
         {
-            for (int j = 0; j < 320; j++)
-            {
-                *(theGame->stage + (190 + j) * 1280 + 400 + i) = Lose[480 * j + i];
-            }
+            *(theGame->stage + (190 + j) * 1280 + 400 + i) = Lose[480 * j + i];
         }
+    }
 }

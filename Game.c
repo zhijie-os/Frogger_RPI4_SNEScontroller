@@ -42,9 +42,7 @@ void initGame()
     theGame.package->lastUpdate = 0;
     theGame.startTime = time(0);
     start = time(0);
-    for(int i=0;i<4;i++){
-        theGame.package->on[i]=0;
-    }
+    restPackage(&theGame);
 }
 
 void mainMenuHandler()
@@ -147,14 +145,11 @@ void play()
 void render(int lower)
 {
     renderScreen(&theGame);
+    renderInforBar(&theGame);
     renderMap(&theGame);
     renderValuePackage(&theGame);
     renderFrog(&theGame);
     memcpy(theGame.stage, theGame.canvas + lower * BOUNDARY_WIDTH * CELL_PIXEL, BOUNDARY_WIDTH * (BOUNDARY_HEIGTH - 40) * 2);
-    for (int i; i < 1280 * 40; i++)
-    {
-        theGame.infor[i] = 0xFFFF;
-    }
     memcpy(theGame.stage + 1280 * 680, theGame.infor, 1280 * 40 * 2);
     drawPixel(&theGame);
 }
@@ -174,7 +169,8 @@ void WinOrLose(bool win)
     usleep(400000);
 
     Read_SNES();
-    while(!pressed()){
+    while (!pressed())
+    {
         Read_SNES();
     };
 

@@ -36,7 +36,6 @@ typedef struct
     int minimumLaneArrived;
     bool winFlag;
     bool loseFlag;
-    bool canMove;
 } Frog;
 
 typedef struct

@@ -265,7 +265,7 @@ Direction getAKey()
 {   
     gettimeofday(&timeEnd,NULL);
     timersub(&timeEnd,&timeBegin,&timeDiff);
-    if(timeDiff.tv_usec<130000){
+    if(timeDiff.tv_usec<160000){
         return NoDir;
     }
     gettimeofday(&timeBegin,NULL);

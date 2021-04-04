@@ -21,4 +21,14 @@ void renderPause(GameState *theGame,int state);
 void renderWin(GameState *theGame);
 
 void renderLose(GameState *theGame);
+
+void renderScore(GameState *theGame);
+
+void renderMovement(GameState *theGame);
+
+void renderLive(GameState *theGame);
+
+void renderInforBar(GameState *theGame);
+
+void renderInforTitle(GameState *theGame);
 #endif

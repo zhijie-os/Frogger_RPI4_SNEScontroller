@@ -1,10 +1,10 @@
 #include "FrogFunction.h"
 
-int Map_SPEED[MAP_SIZE] =  {0,
-                               2, 3, -2, 3, -3, 0,
-                               3, -3, 2, -4, 0,
-                               -2, 3, -3, 3, 0,
-                               -2, 3, -3, 2, -4, 0};
+int Map_SPEED[MAP_SIZE] = {0,
+                           2, 3, -2, 3, -3, 0,
+                           3, -3, 2, -4, 0,
+                           -2, 3, -3, 3, 0,
+                           -2, 3, -3, 2, -4, 0};
 /**
  * @brief  Initialize the Frog
  * @note   
@@ -14,7 +14,6 @@ int Map_SPEED[MAP_SIZE] =  {0,
 void initFrog(Frog *theFrog)
 {
     theFrog->life = 4;
-    theFrog->canMove = true;
     theFrog->score = 0;
     theFrog->timeLeft = 90;
     theFrog->minimumLaneArrived = 22;
@@ -50,10 +49,8 @@ void reviveFrog(Frog *theFrog)
  */
 void updateFrog(Frog *theFrog, Map *theMap, Direction dir)
 {
-    if (theFrog->canMove)
-    {
-        moveFrog(theFrog, dir);
-    }
+    moveFrog(theFrog, dir);
+
     FrogMoveWithObject(theFrog, theMap);
     if (willFrogDie(theFrog, theMap))
     {
@@ -66,15 +63,18 @@ void updateFrog(Frog *theFrog, Map *theMap, Direction dir)
             reviveFrog(theFrog);
         }
     }
-    if(theFrog->timeLeft<=0 || theFrog->moveLeft<=0){
+    if (theFrog->timeLeft <= 0 || theFrog->moveLeft <= 0)
+    {
         theFrog->loseFlag = true;
     }
     FrogOutSideScreen(theFrog);
     if (theFrog->lane < theFrog->minimumLaneArrived)
     {
+        theFrog->minimumLaneArrived = theFrog->lane;
         theFrog->score = theFrog->score + 10;
     }
-    if(theFrog->lane==0){
+    if (theFrog->lane == 0)
+    {
         theFrog->winFlag = true;
     }
 }
@@ -120,25 +120,25 @@ void moveFrog(Frog *theFrog, Direction dir)
     case Up:
         if (theFrog->lane <= MAP_SIZE - 1 && theFrog->lane > 0)
             theFrog->lane -= 1;
-            theFrog->moveLeft -= 1;
+        theFrog->moveLeft -= 1;
         break;
 
     case Down:
         if (theFrog->lane > 0 && theFrog->lane < MAP_SIZE - 1)
             theFrog->lane += 1;
-            theFrog->moveLeft -= 1;
+        theFrog->moveLeft -= 1;
         break;
 
     case Left:
         if (theFrog->x - CELL_PIXEL >= GAME_SCREEN_LEFT)
             theFrog->x -= CELL_PIXEL;
-            theFrog->moveLeft -= 1;
+        theFrog->moveLeft -= 1;
         break;
 
     case Right:
         if (theFrog->x + CELL_PIXEL * 2 <= GAME_SCREEN_RIGHT)
             theFrog->x += CELL_PIXEL;
-            theFrog->moveLeft -= 1;
+        theFrog->moveLeft -= 1;
         break;
 
     default:
