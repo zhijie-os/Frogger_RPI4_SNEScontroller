@@ -9,6 +9,20 @@
 #include <sys/ioctl.h>
 #include "FrameBuffer.h"
 
+
+/**
+ * @author Zhijie Xia
+ * @date Feb/27/2021
+ * Initialize the framebuffer with a single function 
+ * modified from the original code on d2l: DrawImage.zip
+ */
+
+
+
+/**
+ * @brief initialize the framebuffer
+ * @retval the pointer to the frame buffer
+ */
 FrameBuffer *initFbInfo(void)
 {
     int fbfd = 0;
@@ -75,8 +89,12 @@ FrameBuffer *initFbInfo(void)
 
 
 
-/* Draw a pixel */
+/**
+ * @brief Draw a frame
+ * @retval None
+ */
 void drawPixel(GameState *theGame)
 {
+    // copy from the stage area, and show.
     memcpy(theGame->framebuffer->fptr, theGame->stage, 1280*720*2);
 }

@@ -7,6 +7,7 @@
 #include <time.h>
 
 
+// structs/ types that are commonly used in this game
 
 typedef enum
 {

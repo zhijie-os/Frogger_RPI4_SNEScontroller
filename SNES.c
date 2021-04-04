@@ -250,7 +250,11 @@ void FreeMappedMemory()
     munmap(gpio_map, BLOCK_SIZE);
 }
 
-
+/**
+ * @brief  init the SNES
+ * @note   
+ * @retval None
+ */
 void initSNES()
 {
     MemoryMap();
@@ -261,6 +265,11 @@ void initSNES()
     gettimeofday(&timeBegin,NULL);
 };
 
+
+/**
+ * @brief  get a pressed key
+ * @retval a key is pressed (Direction type<->enum)
+ */
 Direction getAKey()
 {   
     gettimeofday(&timeEnd,NULL);

@@ -1,3 +1,12 @@
+
+/**
+ * @author Zhijie Xia  
+ * @date April/04/2021
+ * Short array for every pixel of the pre-drawn information-bar (live,score,movement,timer).
+ * Short array created by https://javl.github.io/image2cpp/
+ */
+
+
 unsigned short inforTitle[1280 * 40 + 1] = {
     // 'inforBar', 1280x40px
     0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
