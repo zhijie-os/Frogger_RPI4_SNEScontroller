@@ -147,7 +147,7 @@ void reachPackage(GameState *theGame)
         }
         else
         {
-            theGame->theFrog->timeLeft == 99;
+            theGame->theFrog->timeLeft = 99;
         }
         break;
 

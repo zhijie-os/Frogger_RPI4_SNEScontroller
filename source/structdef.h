@@ -86,9 +86,7 @@ typedef struct
     Image *fireBallImage;
     Image *iceBallImage;
     Image *lightBallImage;
-    Image *flyImage;
-    Image *bugImage;
-    Image *frogCarryBugImage;
+
     Image *frogImage;
     Image *logImage;
     Image *castleImage;

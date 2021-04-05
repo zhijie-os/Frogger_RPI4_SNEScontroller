@@ -257,6 +257,7 @@ void *playThreadFunction(void *infor)
             turn = 2;
         }
     }
+    pthread_exit(0);
 }
 
 
@@ -288,6 +289,7 @@ void *renderThreadFunction(void *infor)
         }
         WinOrLose(theGame.theFrog->winFlag);
     }
+    pthread_exit(0);
 }
 
 

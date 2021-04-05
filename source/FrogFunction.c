@@ -191,7 +191,7 @@ void FrogMoveWithObject(Frog *theFrog, Map *theMap)
         Cell current = theMap->lanes[theFrog->lane].cells[i];
         if (current.fatal == SaveFrog && theFrog->lane >= 1 && theFrog->lane <= 6)
         {
-            if (current.x <= theFrog->x && theFrog->x <= (current.x + CELL_PIXEL) || current.x <= (theFrog->x + CELL_PIXEL) && (theFrog->x + CELL_PIXEL) <= (current.x + CELL_PIXEL))
+            if ((current.x <= theFrog->x && theFrog->x <= (current.x + CELL_PIXEL)) || (current.x <= (theFrog->x + CELL_PIXEL) && (theFrog->x + CELL_PIXEL) <= (current.x + CELL_PIXEL)))
             {
                 // if it is, the frog moves with the lane
                 theFrog->x += CHANNEL_SPEED[theFrog->lane];
