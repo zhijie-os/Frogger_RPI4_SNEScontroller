@@ -1,37 +1,33 @@
-Frogger:InforBar.o Menus.o ValuePackage.o SNES.o Game.o Images.o MapFunction.o FrogFunction.o FrameBuffer.o Render.o 
-	gcc InforBar.o Menus.o ValuePackage.o SNES.o Game.o Images.o MapFunction.o FrogFunction.o FrameBuffer.o Render.o -pthread -g -o Frogger
-
-SNES.o:SNES.c
-	gcc -g -c SNES.c
-
-ValuePackage.o:ValuePackage.c
-	gcc -g -c ValuePackage.c
-
-Render.o:Render.c
-	gcc -g -c Render.c
-
-Game.o:Game.c
-	gcc -g -c Game.c
-
-Images.o:Images.c
-	gcc -g -c Images.c
-
-MapFunction.o:MapFunction.c
-	gcc -g -c MapFunction.c
+###############################################################################
+#	makefile
+#	by Mohamad Elzohbi.
+#
+#	A makefile script for building mixed C & Assembly programs RPI3
+###############################################################################
 
 
-FrogFunction.o:FrogFunction.c
-	gcc -g -c FrogFunction.c
+# The intermediate directory for compiled object files.
+BUILD = build/
 
-FrameBuffer.o:FrameBuffer.c
-	gcc -g -c FrameBuffer.c
+# The directory in which source files are stored.
+SOURCE = source/
 
+# The names of all object files that must be generated. Deduced from the 
+# assembly code files in source.
+OBJECTS := $(patsubst $(SOURCE)%.s,$(BUILD)%.o,$(wildcard $(SOURCE)*.s))
+COBJECTS := $(patsubst $(SOURCE)%.c,$(BUILD)%.o,$(wildcard $(SOURCE)*.c))
 
-Menus.o: Menus.c
-	gcc -g -c Menus.c
+# Rule to make the executable files.
+Frogger: $(OBJECTS) $(COBJECTS)
+	gcc -pthread -o Frogger $(OBJECTS) $(COBJECTS)
 
-InforBar.o:InforBar.c
-	gcc -g -c InforBar.c
+# Rule to make the object files.
+$(BUILD)%.o: $(SOURCE)%.s
+	as --gstabs -I $(SOURCE) $< -o $@
 
-clean:
-	rm *.o
+$(BUILD)%.o: $(SOURCE)%.c
+	gcc -g -c -O0 -Wall -I $(SOURCE) $< -o $@
+
+# Rule to clean files.
+clean : 
+	-rm -f $(BUILD)*.o Frogger
